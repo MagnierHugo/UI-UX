@@ -1,9 +1,10 @@
-#if UNITY_EDITOR
 using System.Collections;
+using UnityEngine;
+
+#if UNITY_EDITOR
 using UnityEditor;
 #endif
 
-using UnityEngine;
 
 
 public class Item : MonoBehaviour
@@ -12,32 +13,24 @@ public class Item : MonoBehaviour
     [field: SerializeField, HideInInspector] public Sprite ItemSprite { get; private set; }
 
 #if UNITY_EDITOR
+    [HideInInspector] public bool AwaitingPreview = false;
+
     private void OnValidate()
     {
-        print(nameof(OnValidate));
-        StartCoroutine(GeneratePreview());
+        if (Prefab == null) return;
+
+        // Mark for preview generation
+        AwaitingPreview = true;
+        print($"{gameObject.name}: {nameof(OnValidate)}");
     }
 
-    private IEnumerator GeneratePreview()
+    public void SetPreviewSprite(Sprite sprite)
     {
-        if (Prefab == null)
-            yield break;
+        ItemSprite = sprite;
+        AwaitingPreview = false;
+        print($"{gameObject.name}: {nameof(SetPreviewSprite)}");
 
-        Texture2D previewTexture = null;
-        while (previewTexture == null)
-        {
-            previewTexture = AssetPreview.GetAssetPreview(Prefab);
-            yield return null;
-        }
-
-
-        ItemSprite = Sprite.Create(
-            previewTexture,
-            new Rect(0, 0, previewTexture.width, previewTexture.height),
-            new Vector2(.5f, .5f)
-        );
-
-        print("Preview Generated");
+        EditorUtility.SetDirty(this);
     }
 #endif
 }

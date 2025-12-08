@@ -11,7 +11,9 @@ GameObject:
   - component: {fileID: 4494645093706063201}
   - component: {fileID: 4712434497818486296}
   - component: {fileID: 8278864443887129137}
+  - component: {fileID: -4622501604311653571}
   - component: {fileID: -2800150894708709598}
+  - component: {fileID: -6863206601068038764}
   m_Layer: 0
   m_Name: burgerBun_Sesame
   m_TagString: Untagged
@@ -87,6 +89,27 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-4622501604311653571
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274892309207473596}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.3999999, y: 0.70367783, z: 1.4}
+  m_Center: {x: 0.000000029802322, y: 0.048402727, z: 0}
 --- !u!114 &-2800150894708709598
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -101,3 +124,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 5274892309207473596}
   <ItemSprite>k__BackingField: {fileID: 0}
+  AwaitingPreview: 1
+--- !u!114 &-6863206601068038764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5274892309207473596}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad7e5de7bf6d644d80f8822230de68a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: -2800150894708709598}
+  OnClickEvent:
+    m_PersistentCalls:
+      m_Calls: []

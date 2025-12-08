@@ -22,6 +22,7 @@ public class PlayerInventory : MonoBehaviour
         if (item == null)
             return;
 
+        print($"Picked up {item.gameObject.name}");
         int index = (int)hand;
         GameObject itemInHand = inventory[index];
         if (itemInHand != null)
@@ -29,6 +30,7 @@ public class PlayerInventory : MonoBehaviour
 
         inventory[index] = item.Prefab;
         hands[index].sprite = item.ItemSprite;
+        Destroy(item.gameObject);
     }
 }
 
