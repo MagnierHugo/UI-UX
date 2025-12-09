@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2480492213565362576}
   - component: {fileID: 4405135027574997406}
   - component: {fileID: -7292701641971728844}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: fish
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -123,8 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 6507219607088022157}
-  <ItemSprite>k__BackingField: {fileID: 0}
-  AwaitingPreview: 1
+  <InventoryPreview>k__BackingField: {fileID: 21300000, guid: 77ef38737807d274ab49a99631bf183c, type: 3}
 --- !u!114 &-7292701641971728844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +131,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6507219607088022157}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5ad7e5de7bf6d644d80f8822230de68a, type: 3}
   m_Name: 

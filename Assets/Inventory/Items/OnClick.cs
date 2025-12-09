@@ -10,7 +10,7 @@ public class OnClick : MonoBehaviour
     private void OnMouseDown()
     {
         print($"{gameObject.name}: {nameof(OnMouseDown)}");
-
+        return;
         OnClickEvent?.Invoke(item, Input.GetKey(KeyCode.LeftShift) ? Hand.Left : Hand.Right);
     }
 }

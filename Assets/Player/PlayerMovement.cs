@@ -36,6 +36,7 @@ public sealed class PlayerMovement : MonoBehaviour
         moveAction.performed -= OnPlayerMove;
         moveAction.canceled -= OnPlayerMove;
         moveAction.Disable();
+        rigidbody.linearVelocity = Vector3.zero;
     }
 
 
