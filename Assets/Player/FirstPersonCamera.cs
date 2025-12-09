@@ -53,10 +53,9 @@ public sealed class FirstPersonCamera : MonoBehaviour
     private void DisableCursorMode(InputAction.CallbackContext _)
         => SwitchCursorMode(false);
     private bool isInCursorMode;
-    private void SwitchCursorMode(bool towardCursorMode)
+    public void SwitchCursorMode(bool towardCursorMode)
     {
-        isInCursorMode = towardCursorMode;
-        Cursor.visible = towardCursorMode;
+        Cursor.visible = isInCursorMode = towardCursorMode;
         Cursor.lockState = towardCursorMode ? CursorLockMode.Confined : CursorLockMode.Locked;
     }
 
