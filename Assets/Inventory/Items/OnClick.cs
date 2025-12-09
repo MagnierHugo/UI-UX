@@ -11,9 +11,6 @@ public class OnClick : MonoBehaviour
     {
         print($"{gameObject.name}: {nameof(OnMouseDown)}");
 
-        if (Input.GetMouseButtonDown(0))
-            OnClickEvent?.Invoke(item, Hand.Left);
-        else if (Input.GetMouseButtonDown(1))
-            OnClickEvent?.Invoke(item, Hand.Right);
+        OnClickEvent?.Invoke(item, Input.GetKey(KeyCode.LeftShift) ? Hand.Left : Hand.Right);
     }
 }
