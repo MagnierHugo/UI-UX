@@ -1,36 +1,36 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 public class PlayerInventory : MonoBehaviour
 {
-    [SerializeField] private Image[] hands = new Image[2] { null, null };
-
+    [SerializeField] private Vector3[] renderPositions = new Vector3[2];
     private readonly GameObject[] inventory = new GameObject[2] { null, null };
 
+#if UNITY_EDITOR
     private void OnValidate()
     {
-        hands = hands.Length switch
+        renderPositions = renderPositions.Length switch
         {
-            0 => new Image[2] { null, null },
-            1 => new Image[2] { hands[0], null },
-            _ => new Image[2] { hands[0], hands[1] }
+            0 => new Vector3[2] { default, default },
+            1 => new Vector3[2] { renderPositions[0], default },
+            _ => new Vector3[2] { renderPositions[0], renderPositions[1] }
         };
     }
+#endif
 
     public void PickupItem(Item item, Hand hand)
     {
         if (item == null)
             return;
 
-        print($"Picked up {item.gameObject.name}");
         int index = (int)hand;
         GameObject itemInHand = inventory[index];
         if (itemInHand != null)
-            Instantiate(itemInHand, item.transform.position, Quaternion.identity);
+        {
+            itemInHand.transform.position = item.transform.position;
+        }
 
         inventory[index] = item.Prefab;
-        hands[index].sprite = item.ItemSprite;
-        Destroy(item.gameObject);
+        item.transform.position = renderPositions[index];
     }
 }
 
