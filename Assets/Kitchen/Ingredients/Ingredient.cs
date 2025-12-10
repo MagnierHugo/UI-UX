@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Item : MonoBehaviour, IInteractable
+public class Ingredient : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public GameObject Prefab { get; private set; }
     //[field: SerializeField] public Sprite InventoryPreview { get; private set; }

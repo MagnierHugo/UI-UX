@@ -8,14 +8,14 @@ public sealed class PlayerInventory : MonoBehaviour
 #endif
 
     [SerializeField, HideInInspector] private Vector3[] renderPositions = new Vector3[2];
-    private readonly Item[] hands = new Item[2];
+    private readonly Ingredient[] hands = new Ingredient[2];
 
-    private Item LeftHand
+    private Ingredient LeftHand
     {
         get => hands[0];
         set => hands[0] = value;
     }
-    private Item RightHand
+    private Ingredient RightHand
     {
         get => hands[1];
         set => hands[1] = value;
@@ -55,24 +55,37 @@ public sealed class PlayerInventory : MonoBehaviour
     }
 #endif
 
-    public void PickupInLeftHand(Item item) => PickupItem(item, 0);
-    public void PickupInRightHand(Item item) => PickupItem(item, 1);
-    public void PickupItem(Item item, int handIndex)
+    public Ingredient PickupInLeftHand(Ingredient ingredient) => PickupItem(ingredient, 0);
+    public Ingredient PickupInRightHand(Ingredient ingredient) => PickupItem(ingredient, 1);
+    private Ingredient PickupItem(Ingredient ingredient, int handIndex)
     {
-        if (item == null) 
-            return;
+        if (ingredient == null) 
+            return null;
 
-        Item itemInHand = hands[handIndex];
-        if (itemInHand != null) // sth is already held in this hand
+        Ingredient ingredientInHand = hands[handIndex];
+        if (ingredientInHand != null) // sth is already held in this hand
         {
-            itemInHand.transform.position = item.transform.position; // place the previously held item at the newly held item position
+            ingredientInHand.transform.position = ingredient.transform.position; // place the previously held item at the newly held item position
             //itemInHand.gameObject.SetActive(true);
         }
 
-        hands[handIndex] = item;
-        item.transform.position = renderPositions[handIndex];
+        hands[handIndex] = ingredient;
+        ingredient.transform.position = renderPositions[handIndex];
         //handsPreview[handIndex].sprite = item.InventoryPreview;
         //item.gameObject.SetActive(false);
+        return ingredientInHand;
+    }
+
+    public Ingredient PlaceItemInLeftHand() => PlaceItem(0);
+    public Ingredient PlaceItemInRightHand() => PlaceItem(1);
+    private Ingredient PlaceItem(int handIndex)
+    {
+        Ingredient ingredientInHand = hands[handIndex];
+        if (ingredientInHand == null)
+            return null;
+
+        hands[handIndex] = null;
+        return ingredientInHand;
     }
 
     private void Update()

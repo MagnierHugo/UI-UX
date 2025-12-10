@@ -11,7 +11,7 @@ public sealed class PlayerInteract : MonoBehaviour
 {
 	//[SerializeField] private new Camera camera;
 	[SerializeField] private float interactRange;
-	[SerializeField] private Transform pickUpCanvas;
+	[SerializeField] private Transform interactCanvas;
     private InputAction interactAction;
     [SerializeField] private FirstPersonCamera firstPersonCamera;
     [SerializeField, HideInInspector] private Transform firstPersonCameraTransform;
@@ -40,7 +40,7 @@ public sealed class PlayerInteract : MonoBehaviour
     {
         InputActionMap inputActionMap = GetComponent<PlayerInput>().currentActionMap;
         interactAction = inputActionMap.FindAction("Interact", true);
-        pickUpCanvas.gameObject.SetActive(false);
+        interactCanvas.gameObject.SetActive(false);
         playerInventory = GetComponent<PlayerInventory>();
         playerMovement = GetComponent<PlayerMovement>();
     }
@@ -91,7 +91,7 @@ public sealed class PlayerInteract : MonoBehaviour
             if (interacted)
             {
                 interactedGameObject = hit.collider.gameObject;
-                pickUpCanvas.transform.position = hit.collider.bounds.center + Vector3.up * verticalOffsetForCanvas;
+                interactCanvas.transform.position = hit.collider.bounds.center + Vector3.up * verticalOffsetForCanvas;
                 OnFirstButtonClicked += interactable.OnFirstButtonClicked;
                 OnSecondButtonClicked += interactable.OnSecondButtonClicked;
             }
@@ -105,13 +105,13 @@ public sealed class PlayerInteract : MonoBehaviour
 
         if (interactedGameObject != null)
         {
-            if (!pickUpCanvas.gameObject.activeSelf)
+            if (!interactCanvas.gameObject.activeSelf)
             {
-                pickUpCanvas.gameObject.SetActive(true);
+                interactCanvas.gameObject.SetActive(true);
                 firstPersonCamera.SwitchCursorMode(true);
                 playerMovement.enabled = false;
             }
-            pickUpCanvas.transform.LookAt(transform);
+            interactCanvas.transform.LookAt(transform);
             if (Input.GetKey(KeyCode.Escape))
             {
                 interactable = interactedGameObject.GetComponent<IInteractable>();
@@ -122,9 +122,9 @@ public sealed class PlayerInteract : MonoBehaviour
         }
         else
         {
-            if (pickUpCanvas.gameObject.activeSelf)
+            if (interactCanvas.gameObject.activeSelf)
             {
-                pickUpCanvas.gameObject.SetActive(false);
+                interactCanvas.gameObject.SetActive(false);
                 firstPersonCamera.SwitchCursorMode(false);
                 playerMovement.enabled = true;
             }
@@ -143,7 +143,7 @@ public sealed class PlayerInteract : MonoBehaviour
         OnSecondButtonClicked -= interactable.OnSecondButtonClicked;
         interactedGameObject = null;
 
-        pickUpCanvas.gameObject.SetActive(false);
+        interactCanvas.gameObject.SetActive(false);
         firstPersonCamera.SwitchCursorMode(false);
         playerMovement.enabled = true;
     }
