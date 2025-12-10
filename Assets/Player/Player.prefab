@@ -171,9 +171,8 @@ GameObject:
   - component: {fileID: 4412700799467952380}
   - component: {fileID: 5974050923345567122}
   - component: {fileID: 7029272505798169516}
-  - component: {fileID: 7152287310298165597}
   m_Layer: 0
-  m_Name: Camera
+  m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,22 +297,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!114 &7152287310298165597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5650458755841317390}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a59d324d4923d754fbd19edb67ae03f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTransform: {fileID: 4263995258228322235}
-  headTransform: {fileID: 7303267795603086755}
-  xSensitivity: 0.3
-  ySensitivity: 0.3
 --- !u!1 &5790552451118821592
 GameObject:
   m_ObjectHideFlags: 0
@@ -592,10 +575,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0293bf9ef3c094f42b3d3027c95dd3e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 4412700799467952380}
   interactRange: 3
   pickUpCanvas: {fileID: 0}
-  firstPersonCamera: {fileID: 7152287310298165597}
+  firstPersonCamera: {fileID: 5183170401694827271}
+  firstPersonCameraTransform: {fileID: 7805187121138021332}
   glintMaterial: {fileID: 2100000, guid: c27e5ab408d5bf340a9fede49bd8a1d8, type: 2}
   firstButton: {fileID: 0}
   secondButton: {fileID: 0}
@@ -627,6 +610,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7805187121138021332}
+  - component: {fileID: 5183170401694827271}
   m_Layer: 0
   m_Name: Head
   m_TagString: Untagged
@@ -651,6 +635,22 @@ Transform:
   - {fileID: 3886999120968784311}
   m_Father: {fileID: 4263995258228322235}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5183170401694827271
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7633306814169700022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a59d324d4923d754fbd19edb67ae03f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTransform: {fileID: 4263995258228322235}
+  headTransform: {fileID: 7805187121138021332}
+  xSensitivity: 0.3
+  ySensitivity: 0.3
 --- !u!1 &8473790965367774765
 GameObject:
   m_ObjectHideFlags: 0
