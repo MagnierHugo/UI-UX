@@ -99,7 +99,6 @@ GameObject:
   - component: {fileID: 2144097178453661095}
   - component: {fileID: -2616454219388458105}
   - component: {fileID: 9181210669895159980}
-  - component: {fileID: -7689601171671946212}
   m_Layer: 3
   m_Name: aubergine
   m_TagString: Untagged
@@ -210,32 +209,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 4067841325772798963}
-  <InventoryPreview>k__BackingField: {fileID: 21300000, guid: 4421f8bb228b9eb44837a5729e267629, type: 3}
---- !u!114 &-7689601171671946212
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4067841325772798963}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad7e5de7bf6d644d80f8822230de68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: 9181210669895159980}
-  OnClickEvent:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+  playerInventory: {fileID: 0}

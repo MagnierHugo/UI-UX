@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 8278864443887129137}
   - component: {fileID: -4622501604311653571}
   - component: {fileID: -2800150894708709598}
-  - component: {fileID: -6863206601068038764}
   m_Layer: 3
   m_Name: burgerBun_Sesame
   m_TagString: Untagged
@@ -123,20 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 5274892309207473596}
-  <InventoryPreview>k__BackingField: {fileID: 21300000, guid: 02e72186d066d2749bf02dc0b1f54704, type: 3}
---- !u!114 &-6863206601068038764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5274892309207473596}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad7e5de7bf6d644d80f8822230de68a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item: {fileID: -2800150894708709598}
-  OnClickEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  playerInventory: {fileID: 0}

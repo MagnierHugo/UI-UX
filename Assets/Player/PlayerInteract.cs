@@ -9,11 +9,12 @@ using UnityEngine.InputSystem;
 
 public sealed class PlayerInteract : MonoBehaviour
 {
-	[SerializeField] private new Camera camera;
+	//[SerializeField] private new Camera camera;
 	[SerializeField] private float interactRange;
 	[SerializeField] private Transform pickUpCanvas;
     private InputAction interactAction;
     [SerializeField] private FirstPersonCamera firstPersonCamera;
+    [SerializeField, HideInInspector] private Transform firstPersonCameraTransform;
     private PlayerMovement playerMovement;
     [SerializeField] private Material glintMaterial;
     private Material initialMaterial;
@@ -31,6 +32,8 @@ public sealed class PlayerInteract : MonoBehaviour
         OnSecondButtonClicked?.Invoke();
         ReleaseActionLock();
     }
+
+    private void OnValidate() => firstPersonCameraTransform = firstPersonCamera.transform;
 
     private PlayerInventory playerInventory;
     private void Awake()
@@ -66,15 +69,19 @@ public sealed class PlayerInteract : MonoBehaviour
 
     
     private void Update()
-    {                                                                                                            
+    {
         //Ray ray = camera.ScreenPointToRay(Input.mousePosition);
-        Debug.DrawRay(camera.transform.position, camera.transform.forward * interactRange, Color.green);
-        bool raycastHit = Physics.Raycast(camera.transform.position, camera.transform.forward, out RaycastHit hit, interactRange, Layers.Interactable, QueryTriggerInteraction.Ignore);
+        Debug.DrawRay(firstPersonCameraTransform.position, firstPersonCameraTransform.forward * interactRange, Color.green);
+        bool raycastHit = Physics.Raycast(firstPersonCameraTransform.position, firstPersonCameraTransform.forward, out RaycastHit hit, interactRange, Layers.Interactable, QueryTriggerInteraction.Ignore);
         if (raycastHit && hit.collider.TryGetComponent<IInteractable>(out var interactable))
         {
-            if (highlightedGameObject == null || highlightedGameObject != hit.collider.gameObject)
+            if (highlightedGameObject != hit.collider.gameObject)
             {
+                if (highlightedGameObject != null)
+                    highlightedGameObject.GetComponent<MeshRenderer>().sharedMaterial = initialMaterial;
+
                 highlightedGameObject = hit.collider.gameObject;
+
                 // actually apply highlighting effect
                 MeshRenderer meshRenderer = highlightedGameObject.GetComponent<MeshRenderer>();
                 initialMaterial = meshRenderer.material;
