@@ -33,7 +33,7 @@ public sealed class PlayerInventory : MonoBehaviour
     //    set => handsPreview[1] = value;
     //}
 
-#if UNITY_EDITOR
+#if UNITY_EDITOR && false
     private void OnValidate()
     {
         refCubes = refCubes.Length switch
@@ -73,12 +73,6 @@ public sealed class PlayerInventory : MonoBehaviour
         item.transform.position = renderPositions[handIndex];
         //handsPreview[handIndex].sprite = item.InventoryPreview;
         //item.gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        DebugOSD.Display(nameof(LeftHand), LeftHand);
-        DebugOSD.Display(nameof(RightHand), RightHand);
     }
 }
 

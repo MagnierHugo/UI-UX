@@ -108,8 +108,6 @@ public sealed class DebugOSD : MonoBehaviour
     #endregion
 
     #region Display For Time
-    [MethodImpl(MethodImplOptions.AggressiveInlining)][Conditional("UNITY_EDITOR")]
-    public static void DisplayForTime<T>(T value, DisplayDurationTypesInMS durationInMs) => DisplayForTime(value, (int)durationInMs);
     [Conditional("UNITY_EDITOR")]
     public static async void DisplayForTime<T>(T value, int durationInMs)
     {
@@ -121,8 +119,6 @@ public sealed class DebugOSD : MonoBehaviour
 
         _ = instance.displayForTimeAnonymousEntries.Remove(index);
     }
-    [MethodImpl(MethodImplOptions.AggressiveInlining)][Conditional("UNITY_EDITOR")]
-    public static void DisplayForTime<TKey, TValue>(TKey key, TValue value, DisplayDurationTypesInMS durationInMs) => DisplayForTime(key, value, (int)durationInMs);
     [Conditional("UNITY_EDITOR")]
     public static async void DisplayForTime<TKey, TValue>(TKey key, TValue value, int durationInMs)
     {
@@ -135,12 +131,15 @@ public sealed class DebugOSD : MonoBehaviour
     }
 
 
-    public enum DisplayDurationTypesInMS
+    public static class DisplayDurationTypesInMS
     {
-        ExtraBrief = 1500,
-        Brief = 2000,
-        Medium = 3000,
-        Long = 4000,
+        public const int JustForTheSakeOfit = 10;
+        public const int ExtraBrief = 1500;
+        public const int Brief = 2000;
+        public const int Medium = 3000;
+        public const int Long = 4000;
+        public const int BurnITIntoMyScreen = int.MaxValue;
+        public const int HauntMeForEternity = int.MaxValue;
     }
 
     #endregion
