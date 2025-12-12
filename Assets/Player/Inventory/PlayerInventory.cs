@@ -36,6 +36,9 @@ public sealed class PlayerInventory : MonoBehaviour
 #if UNITY_EDITOR
     private void OnValidate()
     {
+        if (refCubes == null)
+            return;
+
         refCubes = refCubes.Length switch
         {
             0 => new Transform[2] { null, null },

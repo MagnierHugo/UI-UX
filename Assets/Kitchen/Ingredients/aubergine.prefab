@@ -115,9 +115,9 @@ Transform:
   m_GameObject: {fileID: 4067841325772798963}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.31126356, y: 0.42, z: 11.69885}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: 2.0000005, y: -8.27, z: 2.6}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 5459959483952156682}
   m_Father: {fileID: 0}
@@ -210,3 +210,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 4067841325772798963}
   playerInventory: {fileID: 0}
+  <MeshHeight>k__BackingField: 0.2546378

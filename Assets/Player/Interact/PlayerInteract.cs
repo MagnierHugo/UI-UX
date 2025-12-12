@@ -23,6 +23,7 @@ public sealed class PlayerInteract : MonoBehaviour
     private event Action OnFirstButtonClicked;
     private void FirstButtonClicked()
     {
+        print(nameof(FirstButtonClicked));
         OnFirstButtonClicked?.Invoke();
         ReleaseActionLock();
     }
@@ -135,6 +136,7 @@ public sealed class PlayerInteract : MonoBehaviour
 
     private void ReleaseActionLock()
     {
+        print(nameof(ReleaseActionLock));
         highlightedGameObject.GetComponent<MeshRenderer>().sharedMaterial = initialMaterial;
         highlightedGameObject = null;
 
