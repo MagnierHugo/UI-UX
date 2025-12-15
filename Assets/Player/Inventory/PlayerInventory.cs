@@ -46,8 +46,8 @@ public sealed class PlayerInventory : MonoBehaviour
             _ => new Transform[2] { refCubes[0], refCubes[1] }
         };
 
-        renderPositions[0] = refCubes[0]?.position ?? Vector3.zero;
-        renderPositions[1] = refCubes[1]?.position ?? Vector3.zero;
+        renderPositions[0] = refCubes[0] ? refCubes[0].position : Vector3.zero;
+        renderPositions[1] = refCubes[1] ? refCubes[1].position : Vector3.zero;
 
         //handsPreview = handsPreview.Length switch
         //{
