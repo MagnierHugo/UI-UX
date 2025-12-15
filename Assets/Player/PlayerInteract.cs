@@ -9,12 +9,13 @@ using UnityEngine.InputSystem;
 
 public sealed class PlayerInteract : MonoBehaviour
 {
-    //[SerializeField] private new Camera camera;
     [SerializeField] private float interactRange;
     private InputAction interactAction;
+
+    private PlayerMovement playerMovement;
     [SerializeField] private FirstPersonCamera firstPersonCamera;
     [SerializeField, HideInInspector] private Transform firstPersonCameraTransform;
-    private PlayerMovement playerMovement;
+
     [SerializeField] private Material glintMaterial;
     private Material initialMaterial;
     private void OnValidate() => firstPersonCameraTransform = firstPersonCamera.transform;
@@ -28,7 +29,6 @@ public sealed class PlayerInteract : MonoBehaviour
 
     private GameObject highlightedGameObject;
     private GameObject interactedGameObject;
-    [SerializeField] private float verticalOffsetForCanvas;
 
     private bool isLockedIntoInteraction;
     private void Update()

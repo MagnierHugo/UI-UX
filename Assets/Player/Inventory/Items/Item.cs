@@ -1,3 +1,10 @@
+#pragma warning disable IDE0090
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,29 +13,36 @@ using UnityEngine.UI;
 public sealed class Item : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public GameObject Prefab { get; private set; }
-    private PlayerInventory playerInventory;
+    
     [SerializeField] private GameObject pickupCanvasPrefab;
     private GameObject pickupCanvasInstance;
-    private BoxCollider boxCollider;
-    private void Awake() => boxCollider = GetComponent<BoxCollider>();
-    private void PickUpInLeftHand() => playerInventory.PickupInLeftHand(this);
+    private readonly Vector3 canvasHeightOffset = new Vector3(0, .3f, 0f);
 
+    public BoxCollider BoxCollider { get; private set; } 
+    private void Awake() => BoxCollider = GetComponent<BoxCollider>();
+    
+    [field: SerializeField] public bool IsChoppable { get; private set; }
+    [field: SerializeField] public List<Item> ItemsReturnedWhenChopped { get; private set; }
+
+    private void PickUpInLeftHand() => playerInventory.PickupInLeftHand(this);
     private void PickUpInRightHand() => playerInventory.PickupInRightHand(this);
 
     private void Update()
     {
         if (playerInteract == null)
             return;
+
         pickupCanvasInstance.transform.LookAt(pickupCanvasInstance.transform.position + (pickupCanvasInstance.transform.position - playerInteract.transform.position));
     }
 
+    private PlayerInventory playerInventory;
     private PlayerInteract playerInteract;
     public bool OnBeginInteract(PlayerInteract playerInteract_)
     {
         playerInteract = playerInteract_;
         playerInventory = playerInteract_.GetComponent<PlayerInventory>();
 
-        pickupCanvasInstance = Instantiate(pickupCanvasPrefab, boxCollider.bounds.center + Vector3.up, Quaternion.identity);
+        pickupCanvasInstance = Instantiate(pickupCanvasPrefab, BoxCollider.bounds.center + canvasHeightOffset, Quaternion.identity);
         Button[] buttons = pickupCanvasInstance.GetComponentsInChildren<Button>();
         buttons[0].onClick.AddListener(PickUpInLeftHand);
         buttons[0].onClick.AddListener(OnEndInteract);

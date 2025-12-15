@@ -1,3 +1,5 @@
+using System.Runtime.CompilerServices;
+
 using UnityEngine;
 
 public sealed class PlayerInventory : MonoBehaviour
@@ -19,18 +21,6 @@ public sealed class PlayerInventory : MonoBehaviour
         get => Hands[1];
         private set => Hands[1] = value;
     }
-
-    //[SerializeField] private Image[] handsPreview;
-    //private Image LeftHandPreview
-    //{
-    //    get => handsPreview[0];
-    //    set => handsPreview[0] = value;
-    //}
-    //private Image RightHandPreview
-    //{
-    //    get => handsPreview[1];
-    //    set => handsPreview[1] = value;
-    //}
 
 #if UNITY_EDITOR && false
     private void OnValidate()
@@ -54,7 +44,9 @@ public sealed class PlayerInventory : MonoBehaviour
     }
 #endif
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void PickupInLeftHand(Item item) => PickupItem(item, 0);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void PickupInRightHand(Item item) => PickupItem(item, 1);
     public void PickupItem(Item item, int handIndex)
     {

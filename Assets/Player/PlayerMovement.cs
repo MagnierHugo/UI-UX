@@ -29,13 +29,18 @@ public sealed class PlayerMovement : MonoBehaviour
 
         jumpAction.Enable();
         jumpAction.performed += OnPlayerJump;
-        jumpAction.performed += OnPlayerCancelsJump;
+        jumpAction.canceled += OnPlayerCancelsJump;
     }
     private void OnDisable()
     {
         moveAction.performed -= OnPlayerMove;
         moveAction.canceled -= OnPlayerMove;
         moveAction.Disable();
+
+        jumpAction.performed -= OnPlayerJump;
+        jumpAction.canceled -= OnPlayerCancelsJump;
+        jumpAction.Disable();
+
         rigidbody.linearVelocity = Vector3.zero;
         moveInput = Vector2.zero;
     }
