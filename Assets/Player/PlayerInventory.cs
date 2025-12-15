@@ -2,23 +2,22 @@ using UnityEngine;
 
 public sealed class PlayerInventory : MonoBehaviour
 {
-
 #if UNITY_EDITOR
     [SerializeField] private Transform[] refCubes = new Transform[2];
 #endif
 
     [SerializeField, HideInInspector] private Vector3[] renderPositions = new Vector3[2];
-    private readonly Item[] hands = new Item[2];
+    public readonly Item[] Hands = new Item[2];
 
-    private Item LeftHand
+    public Item LeftHand
     {
-        get => hands[0];
-        set => hands[0] = value;
+        get => Hands[0];
+        private set => Hands[0] = value;
     }
-    private Item RightHand
+    public Item RightHand
     {
-        get => hands[1];
-        set => hands[1] = value;
+        get => Hands[1];
+        private set => Hands[1] = value;
     }
 
     //[SerializeField] private Image[] handsPreview;
@@ -62,22 +61,17 @@ public sealed class PlayerInventory : MonoBehaviour
         if (item == null) 
             return;
 
-        Item itemInHand = hands[handIndex];
+        Item itemInHand = Hands[handIndex];
         if (itemInHand != null) // sth is already held in this hand
         {
             itemInHand.transform.position = item.transform.position; // place the previously held item at the newly held item position
             //itemInHand.gameObject.SetActive(true);
         }
 
-        hands[handIndex] = item;
+        Hands[handIndex] = item;
         item.transform.position = renderPositions[handIndex];
         //handsPreview[handIndex].sprite = item.InventoryPreview;
         //item.gameObject.SetActive(false);
     }
 }
 
-public enum Hand
-{
-    Left,
-    Right
-}

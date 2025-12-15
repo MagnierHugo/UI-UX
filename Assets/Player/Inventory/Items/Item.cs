@@ -1,13 +1,54 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 
-public class Item : MonoBehaviour, IInteractable
+[RequireComponent(typeof(BoxCollider))]
+public sealed class Item : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public GameObject Prefab { get; private set; }
-    //[field: SerializeField] public Sprite InventoryPreview { get; private set; }
-    [SerializeField] private PlayerInventory playerInventory;
+    private PlayerInventory playerInventory;
+    [SerializeField] private GameObject pickupCanvasPrefab;
+    private GameObject pickupCanvasInstance;
+    private BoxCollider boxCollider;
+    private void Awake() => boxCollider = GetComponent<BoxCollider>();
+    private void PickUpInLeftHand() => playerInventory.PickupInLeftHand(this);
 
-    public void OnFirstButtonClicked() => playerInventory.PickupInLeftHand(this);
+    private void PickUpInRightHand() => playerInventory.PickupInRightHand(this);
 
-    public void OnSecondButtonClicked() => playerInventory.PickupInRightHand(this);
+    private void Update()
+    {
+        if (playerInteract == null)
+            return;
+        pickupCanvasInstance.transform.LookAt(pickupCanvasInstance.transform.position + (pickupCanvasInstance.transform.position - playerInteract.transform.position));
+    }
+
+    private PlayerInteract playerInteract;
+    public bool OnBeginInteract(PlayerInteract playerInteract_)
+    {
+        playerInteract = playerInteract_;
+        playerInventory = playerInteract_.GetComponent<PlayerInventory>();
+
+        pickupCanvasInstance = Instantiate(pickupCanvasPrefab, boxCollider.bounds.center + Vector3.up, Quaternion.identity);
+        Button[] buttons = pickupCanvasInstance.GetComponentsInChildren<Button>();
+        buttons[0].onClick.AddListener(PickUpInLeftHand);
+        buttons[0].onClick.AddListener(OnEndInteract);
+        buttons[1].onClick.AddListener(PickUpInRightHand);
+        buttons[1].onClick.AddListener(OnEndInteract);
+
+        return true;
+    }
+
+    public void OnEndInteract()
+    {
+        playerInteract.EndInteraction();
+        playerInteract = null;
+        
+        Button[] buttons = pickupCanvasInstance.GetComponentsInChildren<Button>();
+        buttons[0].onClick.RemoveListener(PickUpInLeftHand);
+        buttons[0].onClick.RemoveListener(OnEndInteract);
+        buttons[1].onClick.RemoveListener(PickUpInRightHand);
+        buttons[1].onClick.RemoveListener(OnEndInteract);
+
+        Destroy(pickupCanvasInstance);
+    }
 }

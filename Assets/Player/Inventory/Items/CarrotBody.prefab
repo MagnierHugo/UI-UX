@@ -209,4 +209,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 6999289844924660197}
-  playerInventory: {fileID: 0}
+  pickupCanvasPrefab: {fileID: 1890965728568196285, guid: b2a6e8d9e0a13e14d83563d9bd0faf2a, type: 3}

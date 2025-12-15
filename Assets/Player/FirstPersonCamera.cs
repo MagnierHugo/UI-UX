@@ -22,8 +22,8 @@ public sealed class FirstPersonCamera : MonoBehaviour
     private void Awake()
     {
         PlayerInput input = playerTransform.GetComponent<PlayerInput>();
-        lookAction = input.currentActionMap.FindAction("Look");
-        cursorModeAction = input.currentActionMap.FindAction("CursorMode");
+        lookAction = input.currentActionMap.FindAction("Look", true);
+        cursorModeAction = input.currentActionMap.FindAction("CursorMode", true);
         SwitchCursorMode(false);
     }
 
@@ -46,6 +46,8 @@ public sealed class FirstPersonCamera : MonoBehaviour
         cursorModeAction.performed -= EnableCursorMode;
         cursorModeAction.canceled -= DisableCursorMode;
         cursorModeAction.Disable();
+
+        lookInputVector = Vector2.zero;
     }
 
     private void EnableCursorMode(InputAction.CallbackContext _)
