@@ -1,67 +1,37 @@
-#if false
 using System;
 using UnityEngine;
 
 public class Refrigerator : MonoBehaviour
 {
-    [Serializable]
-    private struct DoorData
-    {
-        public Transform doorCurrent;
-        public Transform doorClosed;
-        public Transform doorOpen;
-        [HideInInspector] public bool isOpen;
-        [HideInInspector] public bool isMoving;
-    }
+    [SerializeField] private Animator fridgeDoorAnimator;
+    [SerializeField] private Animator freezerDoorAnimator;
+    [SerializeField] private Animator crisperDoorAnimator;
 
-    [SerializeField] private DoorData door;
-    [SerializeField] private DoorData freezerDoor;
-    [SerializeField] private DoorData crisperDoor;
-
-    private void Update()
-    {
-        UpdateFridgeDoor();
-        UpdateFreezerDoor();
-        UpdateCripsterDoor();
-    }
-
-    private void UpdateCripsterDoor()
-    {
-        if (!crisperDoor.isMoving)
-            return;
-
-        if (!crisperDoor.isOpen)
-        {
-            if (crisperDoor.doorOpen)
-        }
-    }
-
-    private void UpdateFreezerDoor()
-    {
-        if (!isFreezerDoorMoving)
-            return;
-    }
-
-    private void UpdateFridgeDoor()
-    {
-        if (!isFridgeDoorMoving)
-            return;
-    }
+    private bool isFridgeOpen = false;
+    private bool isFreezerOpen = false;
+    private bool isCrisperOpen = false;
 
     public void ToggleFridgeDoor()
     {
         if (isFridgeOpen)
         {
-            isFridgeOpen = false;
-            isFreezerOpen = false;
-            isCrisperOpen = false;
-            return;
+            if (isFreezerOpen) ToggleFreezerDoor();
+            if (isCrisperOpen) ToggleCrisperDoor();
         }
 
-        isFridgeOpen = true;
+        isFridgeOpen = !isFridgeOpen;
+        fridgeDoorAnimator.SetBool("isOpen", isFridgeOpen);
     }
 
-    public void ToggleFreezerDoor() => isFreezerOpen = !isFreezerOpen;
-    public void ToggleCrisperDoor() => isCrisperOpen = !isCrisperOpen;
-} 
-#endif
+    public void ToggleFreezerDoor()
+    {
+        isFreezerOpen = !isFreezerOpen;
+        freezerDoorAnimator.SetBool("isOpen", isFreezerOpen);
+    }
+
+    public void ToggleCrisperDoor()
+    {
+        isCrisperOpen = !isCrisperOpen;
+        crisperDoorAnimator.SetBool("isOpen", isCrisperOpen);
+    }
+}

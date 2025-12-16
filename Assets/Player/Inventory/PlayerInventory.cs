@@ -58,9 +58,9 @@ public sealed class PlayerInventory : MonoBehaviour
     }
 #endif
 
-    public Ingredient PickupInLeftHand(Ingredient ingredient) => PickupItem(ingredient, 0);
-    public Ingredient PickupInRightHand(Ingredient ingredient) => PickupItem(ingredient, 1);
-    private Ingredient PickupItem(Ingredient ingredient, int handIndex)
+    public Ingredient PickupInLeftHand(Ingredient ingredient, bool swapItems = true) => PickupItem(ingredient, 0, swapItems);
+    public Ingredient PickupInRightHand(Ingredient ingredient, bool swapItems = true) => PickupItem(ingredient, 1, swapItems);
+    private Ingredient PickupItem(Ingredient ingredient, int handIndex, bool swapItems)
     {
         if (ingredient == null) 
             return null;
@@ -68,6 +68,9 @@ public sealed class PlayerInventory : MonoBehaviour
         Ingredient ingredientInHand = hands[handIndex];
         if (ingredientInHand != null) // sth is already held in this hand
         {
+            if (!swapItems)
+                return ingredient;
+
             ingredientInHand.transform.position = ingredient.transform.position; // place the previously held item at the newly held item position
             //itemInHand.gameObject.SetActive(true);
         }

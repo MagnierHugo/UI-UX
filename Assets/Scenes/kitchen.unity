@@ -520,6 +520,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2018415627426061510, guid: ffe403e388c948c4ebaa5a868cefb29d, type: 3}
+      propertyPath: playerInventory
+      value: 
+      objectReference: {fileID: 1054997029}
     - target: {fileID: 3393251130707566465, guid: ffe403e388c948c4ebaa5a868cefb29d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -0.52
@@ -560,11 +564,24 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5839590733538950293, guid: ffe403e388c948c4ebaa5a868cefb29d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6233476158862175587, guid: ffe403e388c948c4ebaa5a868cefb29d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6550400336336618897, guid: ffe403e388c948c4ebaa5a868cefb29d, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 7781541293249097975, guid: ffe403e388c948c4ebaa5a868cefb29d, type: 3}
       propertyPath: m_Name
       value: refrigerator
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5172843336084057595, guid: ffe403e388c948c4ebaa5a868cefb29d, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -628,7 +645,7 @@ PrefabInstance:
     - target: {fileID: 6283078092395731077, guid: cb31db5ea17e70e48a254fb43c5a801c, type: 3}
       propertyPath: placedItem
       value: 
-      objectReference: {fileID: 9181210669895159980, guid: ffdc748aab09d0c4daac8c288e4699af, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 6283078092395731077, guid: cb31db5ea17e70e48a254fb43c5a801c, type: 3}
       propertyPath: itemPosition.y
       value: 0.375
