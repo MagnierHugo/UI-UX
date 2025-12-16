@@ -19,17 +19,23 @@ public sealed class RecipeSO : ScriptableObject
         List<Item> consumedItems = new List<Item>();
         foreach (ItemType ingredient in Ingredients)
         {
+            bool foundOne = false;
             for (int i = 0; i < inputIngredients.Count; i++)
             {
+                if (inputIngredients[i] == null)
+                    continue;
+
                 if (inputIngredients[i].Itemtype == ingredient)
                 {
                     consumedItems.Add(inputIngredients[i]);
                     inputIngredients.Remove(inputIngredients[i]);
+                    foundOne = true;
                     break;
                 }
-                else
-                    return false;
-            }            
+            }
+
+            if (!foundOne)
+                return false;
         }
 
         foreach (GameObject ingredientGameObject in consumedItems.Select(single => single.gameObject))

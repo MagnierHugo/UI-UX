@@ -12,11 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: RecipeBurger
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
-  <Ingredients>k__BackingField:
-  - {fileID: 9043181695300730959, guid: fd5a3c25a4362f742912e5b570e7eae7, type: 3}
-  - {fileID: 586960052181684128, guid: a1feb38883aae904198181ec171c6c52, type: 3}
-  - {fileID: 5156822809872482892, guid: b2a10c2571691a9449397d92a36e3c30, type: 3}
-  - {fileID: 6901453889919045500, guid: 3fdd2b8293c37964c9f167aea0a6e298, type: 3}
-  - {fileID: 5754157554043401283, guid: 45bded7295c88a547ab64da7867dadd0, type: 3}
-  - {fileID: 2464279667468490412, guid: 881946fda7c50134fb21006db957a6a9, type: 3}
-  <Output>k__BackingField: {fileID: 9181210669895159980, guid: ffdc748aab09d0c4daac8c288e4699af, type: 3}
+  <Ingredients>k__BackingField: 0300000006000000080000000d0000000a00000002000000
+  <Output>k__BackingField: {fileID: 5923910125644067870, guid: eaefebac67bca6a4db411a4c5d3fa5f3, type: 3}

@@ -75,6 +75,10 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
             throw new Exception("Not placed: no spot available");
 
         List<Item> itemsAsList = placedItems.ToList();
+        foreach (Item item in itemsAsList)
+            if (item != null)
+                print(item.Itemtype);
+
         bool success = false;
         Item result = null;
         foreach (var recipe in recipes.Recipes)
@@ -83,5 +87,15 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
 
         if (success)
             playerInventory.PickupItem(result, handIndex);            
+    }
+
+    private void Update()
+    {
+        if (!interactCanvas.activeSelf)
+            return;
+
+        interactCanvas.transform.LookAt(
+            interactCanvas.transform.position + (interactCanvas.transform.position - playerInteract.transform.position)
+        );
     }
 }

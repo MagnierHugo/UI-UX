@@ -1,0 +1,131 @@
+#pragma warning disable IDE0090
+
+
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
+using System.Linq;
+using System.Runtime.CompilerServices;
+
+using UnityEngine;
+using UnityEngine.UI;
+
+
+public sealed class Stove : MonoBehaviour, IInteractable
+{
+    [SerializeField] private GameObject interactCanvas;
+    private Button[] buttons;
+    [SerializeField] private Transform[] placedItemPositions;
+    private Item[] placedItems;
+    private readonly List<CookingProgress> cookingProgresses = new List<CookingProgress>();
+    [SerializeField] private Slider intensitySlider;
+    private void Awake()
+    {
+        interactCanvas.SetActive(false);
+
+        buttons = interactCanvas.GetComponentsInChildren<Button>();
+        buttons[0].onClick.AddListener(OnEndInteract);
+        buttons[0].onClick.AddListener(PlaceLeftHandContent);
+        buttons[1].onClick.AddListener(OnEndInteract);
+        buttons[1].onClick.AddListener(PlaceRightHandContent);
+
+        placedItems = new Item[placedItemPositions.Length];
+    }
+    private PlayerInteract playerInteract;
+    private PlayerInventory playerInventory;
+    public bool OnBeginInteract(PlayerInteract playerInteract_)
+    {
+        playerInteract = playerInteract_;
+        playerInventory = playerInteract_.GetComponent<PlayerInventory>();
+
+        for (int i = 0; i < buttons.Length; i++)
+            buttons[i].gameObject.SetActive(playerInventory.Hands[i]?.IsCookable ?? false);
+
+        interactCanvas.SetActive(true);
+        return true;
+    }
+
+    private void Update()
+    {
+        for (int i = cookingProgresses.Count - 1; i >= 0 ; i--)
+        {
+            CookingProgress cookingProgress = cookingProgresses[i];
+            int indexInPlacedItemList = cookingProgress.IndexInPlacedItems;
+            Item relevantItem = placedItems[indexInPlacedItemList];
+            if (!ReferenceEquals(relevantItem, cookingProgress.TargetItem))
+            {
+                cookingProgresses.RemoveAt(i);
+                continue;
+            }
+
+            if (cookingProgress.UpdateProgress(intensitySlider.value))
+            {
+                placedItems[indexInPlacedItemList] = Instantiate(relevantItem.ItemReturnedWhenCooked);
+                placedItems[indexInPlacedItemList].transform.position = placedItemPositions[i].position;
+                Destroy(relevantItem.gameObject);
+                cookingProgresses.RemoveAt(i);
+            }
+        }
+
+        if (!interactCanvas.activeSelf)
+            return;
+
+        return;
+        interactCanvas.transform.LookAt(
+            interactCanvas.transform.position + (interactCanvas.transform.position - playerInteract.transform.position)
+        );
+    }
+
+    public void OnEndInteract()
+    {
+        playerInteract.EndInteraction();
+        playerInteract = null;
+
+        interactCanvas.SetActive(false);
+    }
+
+    private void PlaceLeftHandContent() => PlaceHandContent(0);
+    private void PlaceRightHandContent() => PlaceHandContent(1);
+    private void PlaceHandContent(int handIndex)
+    {
+        bool wasPlaced = false;
+        for (int i = 0; i < placedItemPositions.Length; i++)
+        {
+            if (Physics.CheckSphere(placedItemPositions[i].position, .1f, Layers.Interactable, QueryTriggerInteraction.Ignore))
+                continue;
+
+            playerInventory.Hands[handIndex].transform.position = placedItemPositions[i].position + Vector3.up * (playerInventory.Hands[handIndex].BoxCollider.size.y / 2); // place it onto the stove
+            placedItems[i] = playerInventory.Hands[handIndex];
+            playerInventory.Hands[handIndex] = null;
+            wasPlaced = true;
+            cookingProgresses.Add(new CookingProgress(placedItems[i], i));
+            break;
+        }
+
+        if (!wasPlaced)
+            throw new Exception("Not placed: no spot available");
+    }
+
+
+    private class CookingProgress
+    {
+        public const int Target = 3;
+        public float Current;
+        public Item TargetItem;
+        public int IndexInPlacedItems;
+        public CookingProgress(Item item, int index)
+        {
+            TargetItem = item;
+            IndexInPlacedItems = index;
+        }
+        public bool UpdateProgress(float progressValue)
+        {
+            Current += progressValue * Time.deltaTime;
+            print(Current);
+
+            return Current >= Target;
+        }
+
+    }
+}

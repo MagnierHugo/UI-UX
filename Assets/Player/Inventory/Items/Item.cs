@@ -22,9 +22,15 @@ public sealed class Item : MonoBehaviour, IInteractable
 
     public BoxCollider BoxCollider { get; private set; } 
     private void Awake() => BoxCollider = GetComponent<BoxCollider>();
-    
+
+    [Header("Chop")]
     [field: SerializeField] public bool IsChoppable { get; private set; }
     [field: SerializeField] public List<Item> ItemsReturnedWhenChopped { get; private set; }
+
+
+    [Header("Cook")]
+    [field: SerializeField] public bool IsCookable { get; private set; }
+    [field: SerializeField] public Item ItemReturnedWhenCooked { get; private set; }
 
     private void PickUpInLeftHand() => playerInventory.PickupInLeftHand(this);
     private void PickUpInRightHand() => playerInventory.PickupInRightHand(this);
@@ -85,4 +91,5 @@ public enum ItemType
     Fish,
     Beef,
     BeefCooked,
+    Burger,
 }
