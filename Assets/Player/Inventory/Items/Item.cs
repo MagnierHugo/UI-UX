@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public sealed class Item : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public GameObject Prefab { get; private set; }
+    [field: SerializeField] public ItemType Itemtype { get; private set; }
     
     [SerializeField] private GameObject pickupCanvasPrefab;
     private GameObject pickupCanvasInstance;
@@ -66,4 +67,22 @@ public sealed class Item : MonoBehaviour, IInteractable
 
         Destroy(pickupCanvasInstance);
     }
+}
+
+public enum ItemType
+{
+    Aubergine,
+    BurgerBun,
+    BurgerBunBottom,
+    BurgerBunTop,
+    Carrot,
+    Tomato,
+    TomatoChopped,
+    Lettuce,
+    LettuceChopped,
+    Cheddar,
+    CheddarSliced,
+    Fish,
+    Beef,
+    BeefCooked,
 }

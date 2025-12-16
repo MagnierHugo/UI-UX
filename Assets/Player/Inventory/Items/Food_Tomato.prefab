@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2087153648596536206}
   - component: {fileID: 3217239428799042217}
   - component: {fileID: 6510081009732798801}
-  - component: {fileID: 4572372693847502368}
   - component: {fileID: 5519462252749664303}
   - component: {fileID: 8295138915578062921}
   m_Layer: 3
@@ -31,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 1.9900265, y: -0.00015954324, z: 48.69896}
-  m_LocalScale: {x: 5, y: 5, z: 5}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -89,28 +88,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &4572372693847502368
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7666754634889188455}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -7649481993019856452, guid: 86900e546c2cb31478f5b1f15b1ba6d8, type: 3}
 --- !u!65 &5519462252749664303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -145,7 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 7666754634889188455}
+  <Itemtype>k__BackingField: 5
   pickupCanvasPrefab: {fileID: 1890965728568196285, guid: b2a6e8d9e0a13e14d83563d9bd0faf2a, type: 3}
+  <PreviewOrientation>k__BackingField: {x: 0, y: 0, z: 0}
   <IsChoppable>k__BackingField: 1
   <ItemsReturnedWhenChopped>k__BackingField:
   - {fileID: 5156822809872482892, guid: b2a10c2571691a9449397d92a36e3c30, type: 3}

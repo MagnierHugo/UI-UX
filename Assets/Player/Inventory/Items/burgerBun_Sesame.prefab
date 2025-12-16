@@ -30,8 +30,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 3.7546144, y: 0.24, z: 11.210017}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -122,4 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 5274892309207473596}
+  <Itemtype>k__BackingField: 1
   pickupCanvasPrefab: {fileID: 1890965728568196285, guid: b2a6e8d9e0a13e14d83563d9bd0faf2a, type: 3}
+  <PreviewOrientation>k__BackingField: {x: 0, y: 0, z: 0}
+  <IsChoppable>k__BackingField: 0
+  <ItemsReturnedWhenChopped>k__BackingField: []

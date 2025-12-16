@@ -46,7 +46,7 @@ public sealed class PlayerInventory : MonoBehaviour
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public void PickupInLeftHand(Item item) => PickupItem(item, 0);
-    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]  
     public void PickupInRightHand(Item item) => PickupItem(item, 1);
     public void PickupItem(Item item, int handIndex)
     {

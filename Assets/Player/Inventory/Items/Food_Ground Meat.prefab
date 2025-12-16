@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8319602204778220860
+--- !u!1 &1204610018845822901
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,48 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7249378299826461431}
-  - component: {fileID: 8785045745019504547}
-  - component: {fileID: 7233099470716996796}
-  - component: {fileID: 8859349356980542019}
-  - component: {fileID: 6901453889919045500}
+  - component: {fileID: 5030025031775670305}
+  - component: {fileID: 1388992511261525934}
+  - component: {fileID: 6447247888173442077}
+  - component: {fileID: 2080623072782074851}
+  - component: {fileID: 7797648890347797948}
   m_Layer: 3
-  m_Name: Food_Chopped Lettuce
+  m_Name: Food_Ground Meat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7249378299826461431
+--- !u!4 &5030025031775670305
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8319602204778220860}
+  m_GameObject: {fileID: 1204610018845822901}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11536038, y: 0.011886879, z: 46.3328}
+  m_LocalPosition: {x: 6.2, y: 0.41, z: 41.7}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8785045745019504547
+--- !u!33 &1388992511261525934
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8319602204778220860}
-  m_Mesh: {fileID: -8775840353042319581, guid: 8ff312420ed65474da93634aceceefc1, type: 3}
---- !u!23 &7233099470716996796
+  m_GameObject: {fileID: 1204610018845822901}
+  m_Mesh: {fileID: 3505841725832905715, guid: a448a9c657fce0649b34729b5f1fdddb, type: 3}
+--- !u!23 &6447247888173442077
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8319602204778220860}
+  m_GameObject: {fileID: 1204610018845822901}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -88,13 +88,13 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8859349356980542019
+--- !u!65 &2080623072782074851
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8319602204778220860}
+  m_GameObject: {fileID: 1204610018845822901}
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -107,23 +107,23 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.29179525, y: 0.13218822, z: 0.17655088}
-  m_Center: {x: 0.0045761093, y: 0.054207228, z: -0.000000007450581}
---- !u!114 &6901453889919045500
+  m_Size: {x: 0.19921198, y: 0.10700994, z: 0.2310095}
+  m_Center: {x: 0.003383059, y: 0.045563612, z: 0.0014164746}
+--- !u!114 &7797648890347797948
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8319602204778220860}
+  m_GameObject: {fileID: 1204610018845822901}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf4ac46867e715d4e913584170a65675, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Prefab>k__BackingField: {fileID: 8319602204778220860}
-  <Itemtype>k__BackingField: 8
+  <Prefab>k__BackingField: {fileID: 1204610018845822901}
+  <Itemtype>k__BackingField: 12
   pickupCanvasPrefab: {fileID: 1890965728568196285, guid: b2a6e8d9e0a13e14d83563d9bd0faf2a, type: 3}
-  <PreviewOrientation>k__BackingField: {x: 0, y: 255, z: 0}
+  <PreviewOrientation>k__BackingField: {x: 0, y: 0, z: 0}
   <IsChoppable>k__BackingField: 0
   <ItemsReturnedWhenChopped>k__BackingField: []
