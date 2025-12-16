@@ -17,6 +17,7 @@ public sealed class Item : MonoBehaviour, IInteractable
     [SerializeField] private GameObject pickupCanvasPrefab;
     private GameObject pickupCanvasInstance;
     private readonly Vector3 canvasHeightOffset = new Vector3(0, .3f, 0f);
+    [field: SerializeField] public Vector3 PreviewOrientation { get; private set; }
 
     public BoxCollider BoxCollider { get; private set; } 
     private void Awake() => BoxCollider = GetComponent<BoxCollider>();

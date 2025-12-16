@@ -56,12 +56,14 @@ public sealed class PlayerInventory : MonoBehaviour
         Item itemInHand = Hands[handIndex];
         if (itemInHand != null) // sth is already held in this hand
         {
-            itemInHand.transform.position = item.transform.position; // place the previously held item at the newly held item position
+            // place the previously held item at the newly held item position
+            itemInHand.transform.SetPositionAndRotation(item.transform.position, Quaternion.identity);
             //itemInHand.gameObject.SetActive(true);
         }
 
         Hands[handIndex] = item;
         item.transform.position = renderPositions[handIndex];
+        item.transform.rotation = Quaternion.Euler(item.PreviewOrientation);
         //handsPreview[handIndex].sprite = item.InventoryPreview;
         //item.gameObject.SetActive(false);
     }

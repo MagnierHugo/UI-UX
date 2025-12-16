@@ -1491,6 +1491,14 @@ PrefabInstance:
       propertyPath: 'refCubes.Array.data[1]'
       value: 
       objectReference: {fileID: 564760119}
+    - target: {fileID: 1436792445152419188, guid: 47f097287fffa80499a0990d16e224e6, type: 3}
+      propertyPath: m_ImplicitTensor
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1436792445152419188, guid: 47f097287fffa80499a0990d16e224e6, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4263995258228322235, guid: 47f097287fffa80499a0990d16e224e6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.35355

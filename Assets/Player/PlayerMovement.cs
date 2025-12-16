@@ -42,6 +42,7 @@ public sealed class PlayerMovement : MonoBehaviour
         jumpAction.Disable();
 
         rigidbody.linearVelocity = Vector3.zero;
+        rigidbody.angularVelocity = Vector3.zero;
         moveInput = Vector2.zero;
     }
 
