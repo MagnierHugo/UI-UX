@@ -1,28 +1,35 @@
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
+public class Tab : MonoBehaviour
 {
     private static Tab selectedTab;
 
     [Header("Appearance")]
     [SerializeField] private Image image;
     [SerializeField] private Color baseColor;
-    [SerializeField] private Color selectedColor;
+    [field: SerializeField] public Color SelectedColor { get; private set; }
+    [SerializeField] private TextMeshProUGUI tabName;
+    [SerializeField] private new string name;
 
     [Space]
     [Header("Content")]
-    [SerializeField] private List<StoredObject> stockedObjects;
+    [SerializeField] private List<StoredObjectData> storedObjects;
     [SerializeField] private bool isSelected = false;
+
+    [Space]
+    [SerializeField] private ObjectsContainer container;
 
     private void OnValidate()
     {
-        if (!image)
-            return;
-        
-        image.color = isSelected ? selectedColor : baseColor;
+        if (image)
+            image.color = isSelected ? SelectedColor : baseColor;
+
+        if (tabName != null)
+            tabName.text = name;
     }
 
     private void Awake()
@@ -36,30 +43,39 @@ public class Tab : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPo
         selectedTab = this;
     }
 
-    public void OnPointerDown(PointerEventData eventData)
+    public void Init(ObjectsContainer container)
+    {
+        this.container = container;
+    }
+
+    public bool SelectTab()
     {
         if (isSelected)
-            return;
+            return false;
 
         isSelected = true;
-        selectedTab.ResetTab();
+        selectedTab?.ResetTab();
         selectedTab = this;
+        container.OnTabSelected(storedObjects);
+        return true;
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
+    public bool OnPointerEnter()
     {
         if (isSelected)
-            return;
+            return false;
 
-        image.color = selectedColor;
+        image.color = SelectedColor;
+        return true;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public bool OnPointerExit()
     {
         if (isSelected)
-            return;
+            return false;
 
         image.color = baseColor;
+        return true;
     }
 
     private void ResetTab()

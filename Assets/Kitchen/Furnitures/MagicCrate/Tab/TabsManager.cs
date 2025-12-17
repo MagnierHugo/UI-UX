@@ -1,6 +1,4 @@
 #if UNITY_EDITOR
-using System;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -17,11 +15,13 @@ public class TabsManager : MonoBehaviour
 
             if (GUILayout.Button("Add Tab"))
             {
-                Instantiate(tabsManager.tabPrefab, tabsManager.transform);
+                GameObject @object = Instantiate(tabsManager.tabPrefab, tabsManager.transform);
+                @object.GetComponent<Tab>().Init(tabsManager.container);
             }
         }
     }
     
     [SerializeField] private GameObject tabPrefab;
+    [SerializeField] private ObjectsContainer container;
 }
 #endif
