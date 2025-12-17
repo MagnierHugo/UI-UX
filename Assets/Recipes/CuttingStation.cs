@@ -24,6 +24,14 @@ public sealed class CuttingStation : MonoBehaviour, IInteractable
         buttons[1].onClick.AddListener(ChopRightHandContent);    
     }
 
+    private void OnDestroy()
+    {
+        buttons[0].onClick.RemoveListener(OnEndInteract);
+        buttons[0].onClick.RemoveListener(ChopLeftHandContent);
+        buttons[1].onClick.RemoveListener(OnEndInteract);
+        buttons[1].onClick.RemoveListener(ChopRightHandContent);
+    }
+
     private void ChopLeftHandContent() => ChopHandContent(0);
     private void ChopRightHandContent() => ChopHandContent(1);
     private void ChopHandContent(int handIndex)

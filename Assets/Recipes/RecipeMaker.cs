@@ -27,6 +27,13 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
 
         placedItems = new Item[placedItemPositions.Length];
     }
+    private void OnDestroy()
+    {
+        buttons[0].onClick.RemoveListener(OnEndInteract);
+        buttons[0].onClick.RemoveListener(PlaceLeftHandContent);
+        buttons[1].onClick.RemoveListener(OnEndInteract);
+        buttons[1].onClick.RemoveListener(PlaceRightHandContent);
+    }
     private PlayerInteract playerInteract;
     private PlayerInventory playerInventory;
     public bool OnBeginInteract(PlayerInteract playerInteract_)

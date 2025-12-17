@@ -1,10 +1,14 @@
+#pragma warning disable
+
+
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 
 public sealed class PlayerInteract : MonoBehaviour
@@ -25,6 +29,7 @@ public sealed class PlayerInteract : MonoBehaviour
         InputActionMap inputActionMap = GetComponent<PlayerInput>().currentActionMap;
         interactAction = inputActionMap.FindAction("Interact", true);
         playerMovement = GetComponent<PlayerMovement>();
+        //object? couldBeNull = this.MyPrettyMethod(null);
     }
 
     private GameObject highlightedGameObject;

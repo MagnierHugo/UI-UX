@@ -11,6 +11,8 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
+using TMPro;
+
 
 public sealed class Stove : MonoBehaviour, IInteractable
 {
@@ -20,6 +22,7 @@ public sealed class Stove : MonoBehaviour, IInteractable
     private Item[] placedItems;
     private readonly List<CookingProgress> cookingProgresses = new List<CookingProgress>();
     [SerializeField] private Slider intensitySlider;
+    [SerializeField] private TextMeshProUGUI temperatureText;
     private void Awake()
     {
         interactCanvas.SetActive(false);
@@ -30,8 +33,23 @@ public sealed class Stove : MonoBehaviour, IInteractable
         buttons[1].onClick.AddListener(OnEndInteract);
         buttons[1].onClick.AddListener(PlaceRightHandContent);
 
+        intensitySlider.onValueChanged.AddListener(UpdateTemperatureText);
         placedItems = new Item[placedItemPositions.Length];
+        temperatureText.text = $"{0.0f:0.00}°C";
     }
+    private void OnDestroy()
+    {
+        buttons[0].onClick.RemoveListener(OnEndInteract);
+        buttons[0].onClick.RemoveListener(PlaceLeftHandContent);
+        buttons[1].onClick.RemoveListener(OnEndInteract);
+        buttons[1].onClick.RemoveListener(PlaceRightHandContent);
+
+        intensitySlider.onValueChanged.RemoveListener(UpdateTemperatureText);
+    }
+
+    private void UpdateTemperatureText(float temperature)
+        => temperatureText.text = $"{temperature:0.00}°C";
+
     private PlayerInteract playerInteract;
     private PlayerInventory playerInventory;
     public bool OnBeginInteract(PlayerInteract playerInteract_)
@@ -71,7 +89,7 @@ public sealed class Stove : MonoBehaviour, IInteractable
         if (!interactCanvas.activeSelf)
             return;
 
-        return;
+        
         interactCanvas.transform.LookAt(
             interactCanvas.transform.position + (interactCanvas.transform.position - playerInteract.transform.position)
         );
