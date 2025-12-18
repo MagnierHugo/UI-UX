@@ -8,15 +8,9 @@ public class TabButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandle
     [SerializeField] private Image image;
     [SerializeField] private Color baseColor;
 
-    public void OnPointerDown(PointerEventData eventData)
-    {
-        if (!tab.SelectTab())
-            return;
+    public void OnPointerDown(PointerEventData _) => Select();
 
-        image.color = tab.SelectedColor;
-    }
-
-    public void OnPointerEnter(PointerEventData eventData)
+    public void OnPointerEnter(PointerEventData _)
     {
         if (!tab.OnPointerEnter())
             return;
@@ -24,11 +18,19 @@ public class TabButton : MonoBehaviour, IPointerDownHandler, IPointerEnterHandle
         image.color = tab.SelectedColor;
     }
 
-    public void OnPointerExit(PointerEventData eventData)
+    public void OnPointerExit(PointerEventData _)
     {
         if (!tab.OnPointerExit())
             return;
 
         image.color = baseColor;
+    }
+
+    public void Select()
+    {
+        if (!tab.SelectTab())
+            return;
+
+        image.color = tab.SelectedColor;
     }
 }

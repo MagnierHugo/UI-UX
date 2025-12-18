@@ -47,8 +47,8 @@ GameObject:
   - component: {fileID: 2190004156288841741}
   - component: {fileID: 5587729571444812067}
   - component: {fileID: 1412209223831193440}
-  - component: {fileID: 1391904255971405524}
   - component: {fileID: 793462298001805310}
+  - component: {fileID: 1391904255971405524}
   m_Layer: 3
   m_Name: MagicCrate
   m_TagString: Untagged
@@ -125,20 +125,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1391904255971405524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2220397749417358105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f2a905f06be15949b37091bf2751348, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  canvas: {fileID: 5224954896152271076}
-  camera: {fileID: 0}
 --- !u!65 &793462298001805310
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -160,6 +146,21 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.1, y: 2.1000004, z: 2.1000004}
   m_Center: {x: 0.000048577785, y: 0, z: -0.000048577785}
+--- !u!114 &1391904255971405524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2220397749417358105}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f2a905f06be15949b37091bf2751348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 5224954896152271076}
+  camera: {fileID: 0}
+  tabs: {fileID: 5528258479904664233}
 --- !u!1 &3772078767545023430
 GameObject:
   m_ObjectHideFlags: 0
@@ -226,7 +227,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Description
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -253,7 +254,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -955,6 +956,7 @@ MonoBehaviour:
   storedObjectPrefab: {fileID: 9067343412377569249, guid: ac2953defc39d79499bbf3f6150c60eb, type: 3}
   name: {fileID: 5452855674109563197}
   description: {fileID: 5714264210162982910}
+  SelectedObject: {fileID: 0}
 --- !u!1 &8178942115771398367
 GameObject:
   m_ObjectHideFlags: 0
@@ -1020,7 +1022,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Name
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1047,7 +1049,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 36
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1144,7 +1146,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_IgnoreLayout: 0
-  m_MinWidth: 600
+  m_MinWidth: 1300
   m_MinHeight: -1
   m_PreferredWidth: -1
   m_PreferredHeight: -1
@@ -1255,12 +1257,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1954457229179173527, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
       propertyPath: m_fontSize
-      value: 60.7
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 4292910644980076471, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
       propertyPath: m_Name
       value: Hand Button
       objectReference: {fileID: 0}
+    - target: {fileID: 4507475659548342183, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
+      propertyPath: container
+      value: 
+      objectReference: {fileID: 139104643981850937}
     - target: {fileID: 5965603760215672941, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1397,11 +1403,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1954457229179173527, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
       propertyPath: m_fontSize
-      value: 60.7
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 4292910644980076471, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
       propertyPath: m_Name
       value: Hand Button
+      objectReference: {fileID: 0}
+    - target: {fileID: 4507475659548342183, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
+      propertyPath: container
+      value: 
+      objectReference: {fileID: 139104643981850937}
+    - target: {fileID: 4507475659548342183, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
+      propertyPath: isLeftHand
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5965603760215672941, guid: e69be151ebdddb6a286895b38e5d7e9c, type: 3}
       propertyPath: m_Pivot.x

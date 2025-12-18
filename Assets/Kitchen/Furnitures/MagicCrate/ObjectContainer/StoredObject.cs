@@ -6,22 +6,27 @@ using UnityEngine.UI;
 
 public class StoredObject : MonoBehaviour, IPointerDownHandler
 {
-    private StoredObjectData data;
+    private ObjectsContainer container;
+    public StoredObjectData Data { get; private set; }
     private new TextMeshProUGUI name;
     private TextMeshProUGUI description;
     [SerializeField] private Image image;
 
-    public void Init(StoredObjectData storedObjectData, TextMeshProUGUI name, TextMeshProUGUI description)
+    public void Init(ObjectsContainer container, StoredObjectData storedObjectData, TextMeshProUGUI name, TextMeshProUGUI description)
     {
-        data = storedObjectData;
-        image.sprite = data.Sprite;
+        this.container = container;
+        Data = storedObjectData;
+        image.sprite = Data.Sprite;
         this.name = name;
         this.description = description;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        name.text = data.Name;
-        description.text = data.Description;
+        name.text = Data.Name;
+        description.text = Data.Description;
+        container.SelectedObject = this;
     }
+
+    public GameObject GetIngredient() => Data.IngredientPrefab;
 }

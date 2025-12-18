@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -18,7 +19,7 @@ public class Tab : MonoBehaviour
     [Space]
     [Header("Content")]
     [SerializeField] private List<StoredObjectData> storedObjects;
-    [SerializeField] private bool isSelected = false;
+    private bool isSelected = false;
 
     [Space]
     [SerializeField] private ObjectsContainer container;
@@ -43,9 +44,15 @@ public class Tab : MonoBehaviour
         selectedTab = this;
     }
 
-    public void Init(ObjectsContainer container)
+    public void Init(ObjectsContainer container, List<StoredObjectData> storedObjectDatas = null, string name = null)
     {
         this.container = container;
+
+        if (storedObjectDatas != null)
+            storedObjects = storedObjectDatas;
+
+        if (!String.IsNullOrEmpty(name))
+            this.name = name;
     }
 
     public bool SelectTab()

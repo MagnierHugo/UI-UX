@@ -1,3 +1,4 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 public sealed class PlayerInventory : MonoBehaviour
@@ -80,6 +81,24 @@ public sealed class PlayerInventory : MonoBehaviour
         //handsPreview[handIndex].sprite = item.InventoryPreview;
         //item.gameObject.SetActive(false);
         return ingredientInHand;
+    }
+
+    public bool PickupAndInstanciateInLeftHand(GameObject ingredientPrefab) => PickupAndInstanciateItem(ingredientPrefab, 0);
+    public bool PickupAndInstanciateInRightHand(GameObject ingredientPrefab) => PickupAndInstanciateItem(ingredientPrefab, 1);
+    private bool PickupAndInstanciateItem(GameObject ingredientPrefab, int handIndex)
+    {
+        print(nameof(PickupAndInstanciateItem));
+        if (ingredientPrefab == null) 
+            return false;
+
+        Ingredient ingredientInHand = hands[handIndex];
+        if (ingredientInHand != null)
+            return false;
+
+        Ingredient ingredient = Instantiate(ingredientPrefab).GetComponent<Ingredient>();
+        hands[handIndex] = ingredient;
+        ingredient.transform.position = renderPositions[handIndex];
+        return true;
     }
 
     public Ingredient PlaceItemInLeftHand() => PlaceItem(0);

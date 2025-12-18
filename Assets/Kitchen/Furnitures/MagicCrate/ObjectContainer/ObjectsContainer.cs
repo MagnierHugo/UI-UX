@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -10,12 +9,24 @@ public class ObjectsContainer : MonoBehaviour
     private List<StoredObjectData> storedObjects;
     [SerializeField] private new TextMeshProUGUI name;
     [SerializeField] private TextMeshProUGUI description;
+    
+    [HideInInspector] public StoredObject SelectedObject;
 
     public void OnTabSelected(List<StoredObjectData> storedObjects)
     {
         this.storedObjects = storedObjects;
         ClearObjects();
         CreateObjects();
+        name.text = "";
+        description.text = "";
+    }
+
+    public void RemoveSelectedObject()
+    {
+        print(nameof(RemoveSelectedObject));
+        storedObjects.Remove(SelectedObject.Data);
+        Destroy(SelectedObject.gameObject);
+        SelectedObject = null;
     }
 
     private void CreateObjects()
@@ -23,7 +34,7 @@ public class ObjectsContainer : MonoBehaviour
         foreach (StoredObjectData storedObject in storedObjects)
         {
             GameObject @object = Instantiate(storedObjectPrefab, transform);
-            @object.GetComponent<StoredObject>().Init(storedObject, name, description);
+            @object.GetComponent<StoredObject>().Init(this, storedObject, name, description);
         }
     }
 
