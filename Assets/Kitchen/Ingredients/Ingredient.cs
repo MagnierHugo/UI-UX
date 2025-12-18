@@ -20,6 +20,13 @@ public sealed class Ingredient : MonoBehaviour, IInteractable
     private readonly Vector3 canvasHeightOffset = new Vector3(0, .3f, 0f);
     [field: SerializeField] public Vector3 PreviewOrientation { get; private set; }
 
+    [field: SerializeField, HideInInspector] public float MeshHeight { get; private set; }
+    private void OnValidate()
+    {
+        MeshRenderer meshRenderer = GetComponent<MeshRenderer>();
+        MeshHeight = meshRenderer.bounds.extents.y;
+    }
+
     public BoxCollider BoxCollider { get; private set; } 
     private void Awake() => BoxCollider = GetComponent<BoxCollider>();
 
