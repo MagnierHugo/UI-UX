@@ -19,7 +19,7 @@ public sealed class Stove : MonoBehaviour, IInteractable
     [SerializeField] private GameObject interactCanvas;
     private Button[] buttons;
     [SerializeField] private Transform[] placedItemPositions;
-    private Item[] placedItems;
+    private Ingredient[] placedItems;
     private readonly List<CookingProgress> cookingProgresses = new List<CookingProgress>();
     [SerializeField] private Slider intensitySlider;
     [SerializeField] private TextMeshProUGUI temperatureText;
@@ -34,8 +34,8 @@ public sealed class Stove : MonoBehaviour, IInteractable
         buttons[1].onClick.AddListener(PlaceRightHandContent);
 
         intensitySlider.onValueChanged.AddListener(UpdateTemperatureText);
-        placedItems = new Item[placedItemPositions.Length];
-        temperatureText.text = $"{0.0f:0.00}°C";
+        placedItems = new Ingredient[placedItemPositions.Length];
+        temperatureText.text = $"{0.0f:0.00}ï¿½C";
     }
     private void OnDestroy()
     {
@@ -48,7 +48,7 @@ public sealed class Stove : MonoBehaviour, IInteractable
     }
 
     private void UpdateTemperatureText(float temperature)
-        => temperatureText.text = $"{temperature:0.00}°C";
+        => temperatureText.text = $"{temperature:0.00}ï¿½C";
 
     private PlayerInteract playerInteract;
     private PlayerInventory playerInventory;
@@ -70,7 +70,7 @@ public sealed class Stove : MonoBehaviour, IInteractable
         {
             CookingProgress cookingProgress = cookingProgresses[i];
             int indexInPlacedItemList = cookingProgress.IndexInPlacedItems;
-            Item relevantItem = placedItems[indexInPlacedItemList];
+            Ingredient relevantItem = placedItems[indexInPlacedItemList];
             if (!ReferenceEquals(relevantItem, cookingProgress.TargetItem))
             {
                 cookingProgresses.RemoveAt(i);
@@ -130,9 +130,9 @@ public sealed class Stove : MonoBehaviour, IInteractable
     {
         public const int Target = 3;
         public float Current;
-        public Item TargetItem;
+        public Ingredient TargetItem;
         public int IndexInPlacedItems;
-        public CookingProgress(Item item, int index)
+        public CookingProgress(Ingredient item, int index)
         {
             TargetItem = item;
             IndexInPlacedItems = index;

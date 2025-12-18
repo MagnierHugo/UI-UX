@@ -10,10 +10,10 @@ using UnityEngine.UI;
 
 
 [RequireComponent(typeof(BoxCollider))]
-public sealed class Item : MonoBehaviour, IInteractable
+public sealed class Ingredient : MonoBehaviour, IInteractable
 {
     [field: SerializeField] public GameObject Prefab { get; private set; }
-    [field: SerializeField] public ItemType Itemtype { get; private set; }
+    [field: SerializeField] public IngredientType IngredientType { get; private set; }
     
     [SerializeField] private GameObject pickupCanvasPrefab;
     private GameObject pickupCanvasInstance;
@@ -25,12 +25,12 @@ public sealed class Item : MonoBehaviour, IInteractable
 
     [Header("Chop")]
     [field: SerializeField] public bool IsChoppable { get; private set; }
-    [field: SerializeField] public List<Item> ItemsReturnedWhenChopped { get; private set; }
+    [field: SerializeField] public List<Ingredient> ItemsReturnedWhenChopped { get; private set; }
 
 
     [Header("Cook")]
     [field: SerializeField] public bool IsCookable { get; private set; }
-    [field: SerializeField] public Item ItemReturnedWhenCooked { get; private set; }
+    [field: SerializeField] public Ingredient ItemReturnedWhenCooked { get; private set; }
 
     private void PickUpInLeftHand() => playerInventory.PickupInLeftHand(this);
     private void PickUpInRightHand() => playerInventory.PickupInRightHand(this);
@@ -75,7 +75,7 @@ public sealed class Item : MonoBehaviour, IInteractable
     }
 }
 
-public enum ItemType
+public enum IngredientType
 {
     Aubergine,
     BurgerBun,

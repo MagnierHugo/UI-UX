@@ -14,7 +14,7 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
     [SerializeField] private RecipesSO recipes;
     private Button[] buttons;
     [SerializeField] private Transform[] placedItemPositions;
-    private Item[] placedItems;
+    private Ingredient[] placedItems;
     private void Awake()
     {
         interactCanvas.SetActive(false);
@@ -25,7 +25,7 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
         buttons[1].onClick.AddListener(OnEndInteract);
         buttons[1].onClick.AddListener(PlaceRightHandContent);
 
-        placedItems = new Item[placedItemPositions.Length];
+        placedItems = new Ingredient[placedItemPositions.Length];
     }
     private void OnDestroy()
     {
@@ -81,13 +81,13 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
         if (!wasPlaced)
             throw new Exception("Not placed: no spot available");
 
-        List<Item> itemsAsList = placedItems.ToList();
-        foreach (Item item in itemsAsList)
+        List<Ingredient> itemsAsList = placedItems.ToList();
+        foreach (Ingredient item in itemsAsList)
             if (item != null)
-                print(item.Itemtype);
+                print(item.IngredientType);
 
         bool success = false;
-        Item result = null;
+        Ingredient result = null;
         foreach (var recipe in recipes.Recipes)
             if (success |= recipe.TryMake(itemsAsList, out result))
                 break;

@@ -9,14 +9,14 @@ public sealed class PlayerInventory : MonoBehaviour
 #endif
 
     [SerializeField, HideInInspector] private Vector3[] renderPositions = new Vector3[2];
-    public readonly Item[] Hands = new Item[2];
+    public readonly Ingredient[] Hands = new Ingredient[2];
 
-    public Item LeftHand
+    public Ingredient LeftHand
     {
         get => Hands[0];
         private set => Hands[0] = value;
     }
-    public Item RightHand
+    public Ingredient RightHand
     {
         get => Hands[1];
         private set => Hands[1] = value;
@@ -45,15 +45,15 @@ public sealed class PlayerInventory : MonoBehaviour
 #endif
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void PickupInLeftHand(Item item) => PickupItem(item, 0);
+    public void PickupInLeftHand(Ingredient item) => PickupItem(item, 0);
     [MethodImpl(MethodImplOptions.AggressiveInlining)]  
-    public void PickupInRightHand(Item item) => PickupItem(item, 1);
-    public void PickupItem(Item item, int handIndex)
+    public void PickupInRightHand(Ingredient item) => PickupItem(item, 1);
+    public void PickupItem(Ingredient item, int handIndex)
     {
         if (item == null) 
             return;
 
-        Item itemInHand = Hands[handIndex];
+        Ingredient itemInHand = Hands[handIndex];
         if (itemInHand != null) // sth is already held in this hand
         {
             // place the previously held item at the newly held item position

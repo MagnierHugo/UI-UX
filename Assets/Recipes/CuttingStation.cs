@@ -36,7 +36,7 @@ public sealed class CuttingStation : MonoBehaviour, IInteractable
     private void ChopRightHandContent() => ChopHandContent(1);
     private void ChopHandContent(int handIndex)
     {
-        List<Item> outcome = playerInventory.Hands[handIndex].ItemsReturnedWhenChopped;
+        List<Ingredient> outcome = playerInventory.Hands[handIndex].ItemsReturnedWhenChopped;
         Destroy(playerInventory.Hands[handIndex].gameObject);
         playerInventory.PickupItem(
             Instantiate(outcome[0]),
@@ -47,7 +47,7 @@ public sealed class CuttingStation : MonoBehaviour, IInteractable
         {
             // no work lmao
             _ = Physics.Raycast(placedItemPosition.position + Vector3.up * 20, Vector3.down, out var hit, 25, Layers.Interactable, QueryTriggerInteraction.Ignore);
-            Item @new = Instantiate(outcome[i]);
+            Ingredient @new = Instantiate(outcome[i]);
             @new.transform.position = hit.point + Vector3.up * (@new.BoxCollider.size.y / 2); // place it onto the table or stack it onto items already on it
         }
     }

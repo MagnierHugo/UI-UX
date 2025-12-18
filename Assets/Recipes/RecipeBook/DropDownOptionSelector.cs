@@ -16,7 +16,7 @@ public sealed class DropDownOptionSelector : MonoBehaviour
     {
         dropDown = GetComponent<TMP_Dropdown>();
         dropDown.options.Clear();
-        foreach (string value in Enum.GetNames(typeof(ItemType)))
+        foreach (string value in Enum.GetNames(typeof(IngredientType)))
             dropDown.options.Add(
                 new TMP_Dropdown.OptionData(value)
             );
