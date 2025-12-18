@@ -9,17 +9,17 @@ public sealed class PlayerInventory : MonoBehaviour
 #endif
 
     [SerializeField, HideInInspector] private Vector3[] renderPositions = new Vector3[2];
-    private readonly Ingredient[] hands = new Ingredient[2];
+    public readonly Ingredient[] Hands = new Ingredient[2];
 
     private Ingredient LeftHand
     {
-        get => hands[0];
-        set => hands[0] = value;
+        get => Hands[0];
+        set => Hands[0] = value;
     }
     private Ingredient RightHand
     {
-        get => hands[1];
-        set => hands[1] = value;
+        get => Hands[1];
+        set => Hands[1] = value;
     }
 
     //[SerializeField] private Image[] handsPreview;
@@ -59,14 +59,16 @@ public sealed class PlayerInventory : MonoBehaviour
     }
 #endif
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Ingredient PickupInLeftHand(Ingredient ingredient, bool swapItems = true) => PickupItem(ingredient, 0, swapItems);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Ingredient PickupInRightHand(Ingredient ingredient, bool swapItems = true) => PickupItem(ingredient, 1, swapItems);
-    private Ingredient PickupItem(Ingredient ingredient, int handIndex, bool swapItems)
+    private Ingredient PickupItem(Ingredient ingredient, int handIndex, bool swapItems = true)
     {
         if (ingredient == null) 
             return null;
 
-        Ingredient ingredientInHand = hands[handIndex];
+        Ingredient ingredientInHand = Hands[handIndex];
         if (ingredientInHand != null) // sth is already held in this hand
         {
             if (!swapItems)
@@ -76,14 +78,17 @@ public sealed class PlayerInventory : MonoBehaviour
             //itemInHand.gameObject.SetActive(true);
         }
 
-        hands[handIndex] = ingredient;
+        Hands[handIndex] = ingredient;
         ingredient.transform.position = renderPositions[handIndex];
+        ingredient.transform.rotation = Quaternion.Euler(ingredient.PreviewOrientation);
         //handsPreview[handIndex].sprite = item.InventoryPreview;
         //item.gameObject.SetActive(false);
         return ingredientInHand;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool PickupAndInstanciateInLeftHand(GameObject ingredientPrefab) => PickupAndInstanciateItem(ingredientPrefab, 0);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public bool PickupAndInstanciateInRightHand(GameObject ingredientPrefab) => PickupAndInstanciateItem(ingredientPrefab, 1);
     private bool PickupAndInstanciateItem(GameObject ingredientPrefab, int handIndex)
     {
@@ -91,25 +96,28 @@ public sealed class PlayerInventory : MonoBehaviour
         if (ingredientPrefab == null) 
             return false;
 
-        Ingredient ingredientInHand = hands[handIndex];
+        Ingredient ingredientInHand = Hands[handIndex];
         if (ingredientInHand != null)
             return false;
 
         Ingredient ingredient = Instantiate(ingredientPrefab).GetComponent<Ingredient>();
-        hands[handIndex] = ingredient;
+        Hands[handIndex] = ingredient;
         ingredient.transform.position = renderPositions[handIndex];
+        ingredient.transform.rotation = Quaternion.Euler(ingredient.PreviewOrientation);
         return true;
     }
 
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Ingredient PlaceItemInLeftHand() => PlaceItem(0);
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
     public Ingredient PlaceItemInRightHand() => PlaceItem(1);
     private Ingredient PlaceItem(int handIndex)
     {
-        Ingredient ingredientInHand = hands[handIndex];
+        Ingredient ingredientInHand = Hands[handIndex];
         if (ingredientInHand == null)
             return null;
 
-        hands[handIndex] = null;
+        Hands[handIndex] = null;
         return ingredientInHand;
     }
 

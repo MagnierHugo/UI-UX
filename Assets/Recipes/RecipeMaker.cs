@@ -92,8 +92,13 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
             if (success |= recipe.TryMake(itemsAsList, out result))
                 break;
 
-        if (success)
-            playerInventory.PickupItem(result, handIndex);            
+        if (!success)
+            return;
+
+        if (handIndex == 0)
+            playerInventory.PickupInLeftHand(result);
+        else
+            playerInventory.PickupInRightHand(result);
     }
 
     private void Update()

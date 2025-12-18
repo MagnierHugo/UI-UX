@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f48b902922dd7947969746f9cfc31e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placedItem: {fileID: 0}
-  playerInventory: {fileID: 0}
+  placedIngredient: {fileID: 0}
+  interactCanvasPrefab: {fileID: 1890965728568196285, guid: b2a6e8d9e0a13e14d83563d9bd0faf2a, type: 3}

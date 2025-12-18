@@ -1,11 +1,13 @@
+using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 [ExecuteAlways]
 public class Worktop : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Ingredient placedItem;
-    [SerializeField] private PlayerInventory playerInventory;
+    [SerializeField] private Ingredient placedIngredient;
+    [SerializeField] private GameObject interactCanvasPrefab;
 
     private bool shouldDestroyChildren = false;
 
@@ -38,43 +40,76 @@ public class Worktop : MonoBehaviour, IInteractable
 
     private void SpawnIngredient()
     {
-        if (placedItem == null)
+        if (placedIngredient == null)
             return;
 
         GameObject ingredient = Instantiate(
-            placedItem.Prefab,
-            transform.position + new Vector3(0f, transform.localScale.y / 2 + placedItem.MeshHeight, 0f),
+            placedIngredient.Prefab,
+            transform.position + new Vector3(0f, transform.localScale.y / 2 + placedIngredient.MeshHeight, 0f),
             Quaternion.identity
         );
 
-        placedItem = ingredient.GetComponent<Ingredient>();
+        placedIngredient = ingredient.GetComponent<Ingredient>();
 
         ingredient.transform.parent = transform;
     }
 
-    public void OnFirstButtonClicked()
+    private PlayerInteract playerInteract;
+    private PlayerInventory playerInventory;
+    private GameObject interactCanvasInstance;
+    
+    public bool OnBeginInteract(PlayerInteract playerInteract_)
     {
-        if (placedItem != null)
-            placedItem.transform.parent = null;
+        playerInteract = playerInteract_;
+        playerInventory = playerInteract_.GetComponent<PlayerInventory>();
 
-        placedItem = placedItem != null ? playerInventory.PickupInLeftHand(placedItem) : playerInventory.PlaceItemInLeftHand();
-        if (placedItem == null)
-            return;
-
-        placedItem.transform.position = transform.position + new Vector3(0f, transform.localScale.y / 2 + placedItem.MeshHeight, 0f);
-        placedItem.transform.parent = transform;
+        interactCanvasInstance = Instantiate(interactCanvasPrefab, transform.position + new Vector3(0f, transform.localScale.y / 2 + .3f, 0f), Quaternion.identity);
+        interactCanvasInstance.transform.LookAt(interactCanvasInstance.transform.position + (interactCanvasInstance.transform.position - playerInteract.transform.position));
+        Button[] buttons = interactCanvasInstance.GetComponentsInChildren<Button>();
+        buttons[0].onClick.AddListener(PickupInLeftHand);
+        buttons[0].onClick.AddListener(OnEndInteract);
+        buttons[1].onClick.AddListener(PickupInRightHand);
+        buttons[1].onClick.AddListener(OnEndInteract);
+        return true;
     }
 
-    public void OnSecondButtonClicked()
+    public void OnEndInteract()
     {
-        if (placedItem != null)
-            placedItem.transform.parent = null;
+        playerInteract.EndInteraction();
+        playerInteract = null;
+        
+        Button[] buttons = interactCanvasInstance.GetComponentsInChildren<Button>();
+        buttons[0].onClick.RemoveListener(PickupInLeftHand);
+        buttons[0].onClick.RemoveListener(OnEndInteract);
+        buttons[1].onClick.RemoveListener(PickupInRightHand);
+        buttons[1].onClick.RemoveListener(OnEndInteract);
 
-        placedItem = placedItem != null ? playerInventory.PickupInRightHand(placedItem) : playerInventory.PlaceItemInRightHand();
-        if (placedItem == null)
+        Destroy(interactCanvasInstance);
+    }
+
+    private void PickupInLeftHand()
+    {
+        if (placedIngredient != null)
+            placedIngredient.transform.parent = null;
+
+        placedIngredient = placedIngredient != null ? playerInventory.PickupInLeftHand(placedIngredient) : playerInventory.PlaceItemInLeftHand();
+        if (placedIngredient == null)
             return;
 
-        placedItem.transform.position = transform.position + new Vector3(0f, transform.localScale.y / 2 + placedItem.MeshHeight, 0f);
-        placedItem.transform.parent = transform;
+        placedIngredient.transform.position = transform.position + new Vector3(0f, transform.localScale.y / 2 + placedIngredient.MeshHeight, 0f);
+        placedIngredient.transform.parent = transform;
+    }
+
+    private void PickupInRightHand()
+    {
+        if (placedIngredient != null)
+            placedIngredient.transform.parent = null;
+
+        placedIngredient = placedIngredient != null ? playerInventory.PickupInRightHand(placedIngredient) : playerInventory.PlaceItemInRightHand();
+        if (placedIngredient == null)
+            return;
+
+        placedIngredient.transform.position = transform.position + new Vector3(0f, transform.localScale.y / 2 + placedIngredient.MeshHeight, 0f);
+        placedIngredient.transform.parent = transform;
     }
 }

@@ -38,10 +38,11 @@ public sealed class CuttingStation : MonoBehaviour, IInteractable
     {
         List<Ingredient> outcome = playerInventory.Hands[handIndex].ItemsReturnedWhenChopped;
         Destroy(playerInventory.Hands[handIndex].gameObject);
-        playerInventory.PickupItem(
-            Instantiate(outcome[0]),
-            handIndex
-        );
+        
+        if (handIndex == 0)
+            playerInventory.PickupInLeftHand(Instantiate(outcome[0]));
+        else
+            playerInventory.PickupInRightHand(Instantiate(outcome[0]));
 
         for (int i = 1; i < outcome.Count; i++)
         {

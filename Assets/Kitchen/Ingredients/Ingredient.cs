@@ -4,7 +4,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-
+using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,8 +27,7 @@ public sealed class Ingredient : MonoBehaviour, IInteractable
         MeshHeight = meshRenderer.bounds.extents.y;
     }
 
-    public BoxCollider BoxCollider { get; private set; } 
-    private void Awake() => BoxCollider = GetComponent<BoxCollider>();
+    [field: SerializeField]public BoxCollider BoxCollider { get; private set; }
 
     [Header("Chop")]
     [field: SerializeField] public bool IsChoppable { get; private set; }
@@ -57,7 +56,7 @@ public sealed class Ingredient : MonoBehaviour, IInteractable
         playerInteract = playerInteract_;
         playerInventory = playerInteract_.GetComponent<PlayerInventory>();
 
-        pickupCanvasInstance = Instantiate(pickupCanvasPrefab, BoxCollider.bounds.center + canvasHeightOffset, Quaternion.identity);
+        pickupCanvasInstance = InstantiatePickupCanvas(BoxCollider.bounds.center);
         Button[] buttons = pickupCanvasInstance.GetComponentsInChildren<Button>();
         buttons[0].onClick.AddListener(PickUpInLeftHand);
         buttons[0].onClick.AddListener(OnEndInteract);
@@ -80,6 +79,9 @@ public sealed class Ingredient : MonoBehaviour, IInteractable
 
         Destroy(pickupCanvasInstance);
     }
+
+    [MethodImpl(MethodImplOptions.AggressiveInlining)]
+    public GameObject InstantiatePickupCanvas(Vector3 center) => Instantiate(pickupCanvasPrefab, center + canvasHeightOffset, Quaternion.identity);
 }
 
 public enum IngredientType

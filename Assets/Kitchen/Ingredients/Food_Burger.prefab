@@ -122,8 +122,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 2635355360216611222}
-  <Itemtype>k__BackingField: 14
+  <IngredientType>k__BackingField: 0
   pickupCanvasPrefab: {fileID: 1890965728568196285, guid: b2a6e8d9e0a13e14d83563d9bd0faf2a, type: 3}
   <PreviewOrientation>k__BackingField: {x: 0, y: 0, z: 0}
+  <MeshHeight>k__BackingField: 0.23133165
+  <BoxCollider>k__BackingField: {fileID: 1527018325785305349}
   <IsChoppable>k__BackingField: 0
   <ItemsReturnedWhenChopped>k__BackingField: []
+  <IsCookable>k__BackingField: 0
+  <ItemReturnedWhenCooked>k__BackingField: {fileID: 0}

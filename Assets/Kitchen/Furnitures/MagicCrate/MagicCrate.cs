@@ -20,8 +20,6 @@ public class MagicCrate : MonoBehaviour, IInteractable
 
 
     private void Awake() => canvas.SetActive(false);
-    public void OnFirstButtonClicked() => Toggle(true);
-    public void OnSecondButtonClicked() => Toggle(true);
     public void Toggle(bool value) => StartCoroutine(SetUIMode(value));
 
 
@@ -55,4 +53,12 @@ public class MagicCrate : MonoBehaviour, IInteractable
             tabsManager.CreateTab(storedObjectDatas, $"Tab n°{i}");
         }
     }
+
+    public bool OnBeginInteract(PlayerInteract playerInteract)
+    {
+        Toggle(true);
+        return false;
+    }
+
+    public void OnEndInteract() { }
 }

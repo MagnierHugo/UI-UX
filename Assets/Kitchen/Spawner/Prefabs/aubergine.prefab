@@ -208,5 +208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f42cc453a600914cb62393686b86b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boxCollider: {fileID: 6784015005318158701}
   ingredientPrefab: {fileID: 4067841325772798963, guid: ffdc748aab09d0c4daac8c288e4699af, type: 3}
-  playerInventory: {fileID: 0}
+  ingredient: {fileID: 9181210669895159980, guid: ffdc748aab09d0c4daac8c288e4699af, type: 3}

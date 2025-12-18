@@ -5,6 +5,11 @@ public class RefrigeratorDoor : MonoBehaviour, IInteractable
 {
     [SerializeField] private UnityEvent onDoorClicked;
 
-    public void OnFirstButtonClicked() => onDoorClicked?.Invoke();
-    public void OnSecondButtonClicked() => onDoorClicked.Invoke();
+    public bool OnBeginInteract(PlayerInteract playerInteract)
+    {
+        onDoorClicked?.Invoke();
+        return false;
+    }
+
+    public void OnEndInteract() { }
 }
