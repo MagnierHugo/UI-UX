@@ -3,7 +3,7 @@ This is a overcook style demo aimed at learning Unity UI system.
 In this demo you can pickup items in both hands and interact with several kitchen furniture to make the recipe of your dreams.
 
 You have access to:
-- a frdige which generate unlimited items to let you cook as much as you want.
+- a fridge which generate unlimited items to let you cook as much as you want.
 - a magic crates that spawn items at random
 - a crates with items
 - a worktop that lets you place an item onto it if you need a free hand
