@@ -14,6 +14,6 @@ You have access to:
 You also have a recipe book (toggle by pressing TAB) that lets you create your own recipes and then create them by placing all the relevant items onto the kitchen table
 
 The objects you can interact with are highlighted when aimed at, press F to actually initiate the interaction.
-Many elements spawn world space canvas to further the interaction with them this interaction can be canceled by pressing ESC
+Many elements spawn world space canvas to further the interaction with them, this interaction can be canceled by pressing ESC
 
 https://github.com/user-attachments/assets/53b7f443-6353-494d-bdfc-1f0ec7e90382
