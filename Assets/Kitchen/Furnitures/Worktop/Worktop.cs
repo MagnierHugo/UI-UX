@@ -57,7 +57,7 @@ public class Worktop : MonoBehaviour, IInteractable
     private PlayerInteract playerInteract;
     private PlayerInventory playerInventory;
     private GameObject interactCanvasInstance;
-    
+    private Button[] buttons;
     public bool OnBeginInteract(PlayerInteract playerInteract_)
     {
         playerInteract = playerInteract_;
@@ -65,12 +65,21 @@ public class Worktop : MonoBehaviour, IInteractable
 
         interactCanvasInstance = Instantiate(interactCanvasPrefab, transform.position + new Vector3(0f, transform.localScale.y / 2 + .3f, 0f), Quaternion.identity);
         interactCanvasInstance.transform.LookAt(interactCanvasInstance.transform.position + (interactCanvasInstance.transform.position - playerInteract.transform.position));
-        Button[] buttons = interactCanvasInstance.GetComponentsInChildren<Button>();
-        buttons[0].onClick.AddListener(PickupInLeftHand);
+        buttons = interactCanvasInstance.GetComponentsInChildren<Button>();
+        buttons[0].onClick.AddListener(ToggleItemFromLeftHand);
         buttons[0].onClick.AddListener(OnEndInteract);
-        buttons[1].onClick.AddListener(PickupInRightHand);
+        buttons[1].onClick.AddListener(ToggleItemFromRightHand);
         buttons[1].onClick.AddListener(OnEndInteract);
-        return true;
+
+        //bool atLeastOneButtonEnabled = false;
+        //for (int i = 0; i < buttons.Length; i++)
+        //{
+        //    bool thisButtonEnabled = playerInventory.Hands[i] != null || ;
+        //    buttons[i].gameObject.SetActive(thisButtonEnabled);
+        //    atLeastOneButtonEnabled |= thisButtonEnabled;
+        //}
+
+        return /*atLeastOneButtonEnabled*/true;
     }
 
     public void OnEndInteract()
@@ -78,16 +87,15 @@ public class Worktop : MonoBehaviour, IInteractable
         playerInteract.EndInteraction();
         playerInteract = null;
         
-        Button[] buttons = interactCanvasInstance.GetComponentsInChildren<Button>();
-        buttons[0].onClick.RemoveListener(PickupInLeftHand);
+        buttons[0].onClick.RemoveListener(ToggleItemFromLeftHand);
         buttons[0].onClick.RemoveListener(OnEndInteract);
-        buttons[1].onClick.RemoveListener(PickupInRightHand);
+        buttons[1].onClick.RemoveListener(ToggleItemFromRightHand);
         buttons[1].onClick.RemoveListener(OnEndInteract);
 
         Destroy(interactCanvasInstance);
     }
 
-    private void PickupInLeftHand()
+    private void ToggleItemFromLeftHand()
     {
         if (placedIngredient != null)
             placedIngredient.transform.parent = null;
@@ -100,7 +108,7 @@ public class Worktop : MonoBehaviour, IInteractable
         placedIngredient.transform.parent = transform;
     }
 
-    private void PickupInRightHand()
+    private void ToggleItemFromRightHand()
     {
         if (placedIngredient != null)
             placedIngredient.transform.parent = null;
