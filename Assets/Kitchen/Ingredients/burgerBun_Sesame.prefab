@@ -127,7 +127,9 @@ MonoBehaviour:
   <PreviewOrientation>k__BackingField: {x: 0, y: 0, z: 0}
   <MeshHeight>k__BackingField: 0.10555168
   <BoxCollider>k__BackingField: {fileID: -4622501604311653571}
-  <IsChoppable>k__BackingField: 0
-  <ItemsReturnedWhenChopped>k__BackingField: []
+  <IsChoppable>k__BackingField: 1
+  <ItemsReturnedWhenChopped>k__BackingField:
+  - {fileID: 2464279667468490412, guid: 881946fda7c50134fb21006db957a6a9, type: 3}
+  - {fileID: 5754157554043401283, guid: 45bded7295c88a547ab64da7867dadd0, type: 3}
   <IsCookable>k__BackingField: 0
   <ItemReturnedWhenCooked>k__BackingField: {fileID: 0}

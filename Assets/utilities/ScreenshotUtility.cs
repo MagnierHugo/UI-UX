@@ -1,10 +1,6 @@
 #pragma warning disable IDE0090
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+#if UNITY_EDITOR
 using System.IO;
-using System.Runtime.CompilerServices;
 
 using UnityEditor;
 
@@ -97,3 +93,5 @@ public sealed class ScreenshotUtility : EditorWindow
         Debug.Log($"SceneView screenshot saved as asset: {path}");
     }
 }
+
+#endif

@@ -14,7 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Recipes>k__BackingField:
   - {fileID: 11400000, guid: 5a55f9e982bd96f4dbab5e935276bb79, type: 2}
-  - {fileID: 0}
   <ItemToPrefabMap>k__BackingField:
   - ItemType: 0
     ItemPrefab: {fileID: 9181210669895159980, guid: ffdc748aab09d0c4daac8c288e4699af, type: 3}

@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.UI;
 
 [CreateAssetMenu(fileName = "NewStoredObject", menuName = "Scriptable Objects/Stored Object")]
 public class StoredObjectData : ScriptableObject

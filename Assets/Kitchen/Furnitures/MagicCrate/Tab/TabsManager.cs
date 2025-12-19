@@ -1,7 +1,8 @@
 #if UNITY_EDITOR
-using System.Collections.Generic;
 using UnityEditor;
 #endif
+
+using System.Collections.Generic;
 using UnityEngine;
 
 public class TabsManager : MonoBehaviour

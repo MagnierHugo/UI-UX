@@ -128,6 +128,7 @@ MonoBehaviour:
   <MeshHeight>k__BackingField: 0.090461075
   <BoxCollider>k__BackingField: {fileID: 2418904887300054974}
   <IsChoppable>k__BackingField: 1
-  <ItemsReturnedWhenChopped>k__BackingField: []
+  <ItemsReturnedWhenChopped>k__BackingField:
+  - {fileID: 9043181695300730959, guid: fd5a3c25a4362f742912e5b570e7eae7, type: 3}
   <IsCookable>k__BackingField: 0
   <ItemReturnedWhenCooked>k__BackingField: {fileID: 0}

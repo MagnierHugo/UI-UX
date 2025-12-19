@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using EditorUtilities;
 using UnityEngine;
 
+
 public class MagicCrate : MonoBehaviour, IInteractable
 {
     [SerializeField] private GameObject canvas;
@@ -12,11 +13,19 @@ public class MagicCrate : MonoBehaviour, IInteractable
     [Space]
     [Header("Magic")]
     [SerializeField] private bool isMagic;
+#if UNITY_EDITOR
     [SerializeField, If(nameof(isMagic))] private int tabMinNumber;
     [SerializeField, If(nameof(isMagic))] private int tabMaxNumber;
     [SerializeField, If(nameof(isMagic))] private int minObjectsPerTab;
     [SerializeField, If(nameof(isMagic))] private int maxObjectsPerTab;
     [SerializeField, If(nameof(isMagic))] private List<StoredObjectData> availableObjects;
+#else
+    [SerializeField] private int tabMinNumber;
+    [SerializeField] private int tabMaxNumber;
+    [SerializeField] private int minObjectsPerTab;
+    [SerializeField] private int maxObjectsPerTab;
+    [SerializeField] private List<StoredObjectData> availableObjects;
+#endif
 
 
     private void Awake() => canvas.SetActive(false);

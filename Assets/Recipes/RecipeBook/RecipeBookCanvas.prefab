@@ -1408,6 +1408,7 @@ MonoBehaviour:
   pagesRoot: {fileID: 3221969432254270383}
   pagePrefab: {fileID: 5946124863487193183, guid: 8205d0222b743834f965fca55bb7a93a, type: 3}
   pageItemPrefab: {fileID: 561387111320826114, guid: 7c165f54dd38c994fb10972b5876d8b1, type: 3}
+  buttonPrefab: {fileID: 1230671092198230344, guid: a8dc65ea0b18b8c4db6244d98760e674, type: 3}
   recipes: {fileID: 11400000, guid: 5341ea99dd493c24396b7113aeab7b97, type: 2}
 --- !u!1 &3468069675914253216
 GameObject:
