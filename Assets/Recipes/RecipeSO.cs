@@ -17,16 +17,16 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Recipe", menuName = "Scriptable Objects/Recipe")]
 public sealed class RecipeSO : ScriptableObject
 {
-    [field: SerializeField] public List<ItemType> Ingredients { get; private set; }
-    [field: SerializeField] public Item Output { get; private set; }
+    [field: SerializeField] public List<IngredientType> Ingredients { get; private set; }
+    [field: SerializeField] public Ingredient Output { get; private set; }
 
-    private Dictionary<ItemType, int> ingredientOccurenceCount;
-    public Dictionary<ItemType, int> IngredientOccurenceCount => ingredientOccurenceCount ??= BuildIngredientOccurenceCount();
-    private Dictionary<ItemType, int> BuildIngredientOccurenceCount()
+    private Dictionary<IngredientType, int> ingredientOccurenceCount;
+    public Dictionary<IngredientType, int> IngredientOccurenceCount => ingredientOccurenceCount ??= BuildIngredientOccurenceCount();
+    private Dictionary<IngredientType, int> BuildIngredientOccurenceCount()
     {
-        Dictionary<ItemType, int> toReturn = new Dictionary<ItemType, int>();
+        Dictionary<IngredientType, int> toReturn = new Dictionary<IngredientType, int>();
 
-        foreach (ItemType currentIngredient in Ingredients)
+        foreach (IngredientType currentIngredient in Ingredients)
         { 
             if (!toReturn.ContainsKey(currentIngredient))
                 toReturn[currentIngredient] = 0;
@@ -37,11 +37,11 @@ public sealed class RecipeSO : ScriptableObject
     }
 
 
-    public bool TryMake(List<Item> inputIngredients, [NotNullWhen(true)] out Item result)
+    public bool TryMake(List<Ingredient> inputIngredients, [NotNullWhen(true)] out Ingredient result)
     {
         result = null;
-        List<Item> consumedItems = new List<Item>();
-        foreach (ItemType ingredient in Ingredients)
+        List<Ingredient> consumedItems = new List<Ingredient>();
+        foreach (IngredientType ingredient in Ingredients)
         {
             bool foundOne = false;
             for (int i = 0; i < inputIngredients.Count; i++)
@@ -49,7 +49,7 @@ public sealed class RecipeSO : ScriptableObject
                 if (inputIngredients[i] == null)
                     continue;
 
-                if (inputIngredients[i].Itemtype == ingredient)
+                if (inputIngredients[i].IngredientType == ingredient)
                 {
                     consumedItems.Add(inputIngredients[i]);
                     inputIngredients.Remove(inputIngredients[i]);
@@ -69,12 +69,12 @@ public sealed class RecipeSO : ScriptableObject
         return true;
     }
 
-    public bool RecipeIsSame(Dictionary<ItemType, int> otherRecipeIngredientOccurenceCount)
+    public bool RecipeIsSame(Dictionary<IngredientType, int> otherRecipeIngredientOccurenceCount)
     {
         if (otherRecipeIngredientOccurenceCount.Count != IngredientOccurenceCount.Count) // not the same amount of ingredient so must be different
             return false;
         
-        foreach (KeyValuePair<ItemType, int> keyValuePair in IngredientOccurenceCount)
+        foreach (KeyValuePair<IngredientType, int> keyValuePair in IngredientOccurenceCount)
         {
             bool bothHaveIngredient = otherRecipeIngredientOccurenceCount.TryGetValue(keyValuePair.Key, out int ingredientCount);
 
@@ -85,12 +85,12 @@ public sealed class RecipeSO : ScriptableObject
         return true;
     }
 
-    public static RecipeSO CreateFromIngredientOccurenceMap(Dictionary<ItemType, int> ingredientOccurenceCount_, ItemType recipeOutput, RecipesSO recipes)
+    public static RecipeSO CreateFromIngredientOccurenceMap(Dictionary<IngredientType, int> ingredientOccurenceCount_, IngredientType recipeOutput, RecipesSO recipes)
     {
         RecipeSO @new = CreateInstance<RecipeSO>();
         @new.ingredientOccurenceCount = ingredientOccurenceCount_;
-        @new.Ingredients = new List<ItemType>();
-        foreach (KeyValuePair<ItemType, int> keyValuePair in ingredientOccurenceCount_)
+        @new.Ingredients = new List<IngredientType>();
+        foreach (KeyValuePair<IngredientType, int> keyValuePair in ingredientOccurenceCount_)
             for (int i = 0; i < keyValuePair.Value; i++)
                 @new.Ingredients.Add(keyValuePair.Key);
 

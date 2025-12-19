@@ -42,11 +42,11 @@ public sealed class RecipeBookPagesHandler : MonoBehaviour
     public void AddPage(RecipeSO recipe)
     {
         Transform @new = Instantiate(pagePrefab, pagesRoot);
-        foreach (ItemType itemType in recipe.Ingredients)
+        foreach (IngredientType itemType in recipe.Ingredients)
             Instantiate(pageItemPrefab, @new).GetComponent<TextMeshProUGUI>().text = itemType.ToString();
         TextMeshProUGUI textMeshPro = Instantiate(pageItemPrefab, @new).GetComponent<TextMeshProUGUI>();
         textMeshPro.color = Color.green;
-        textMeshPro.text = recipe.Output.Itemtype.ToString();
+        textMeshPro.text = recipe.Output.IngredientType.ToString();
         @new.gameObject.SetActive(false);
     }
 

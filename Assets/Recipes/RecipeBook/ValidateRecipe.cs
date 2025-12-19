@@ -34,12 +34,12 @@ public sealed class ValidateRecipe : MonoBehaviour
 
     private void TryBuildRecipe()
     {
-        Dictionary<ItemType, int> ingredientOccurenceCount = new Dictionary<ItemType, int>();
+        Dictionary<IngredientType, int> ingredientOccurenceCount = new Dictionary<IngredientType, int>();
         for (int i = 0; i < verticalLayoutGroup.childCount - 1; i++)
         {
             TMP_Dropdown currentDropDown = verticalLayoutGroup.GetChild(i).GetComponent<TMP_Dropdown>();
-            ItemType currentIngredient = (ItemType)Enum.Parse(
-                typeof(ItemType),
+            IngredientType currentIngredient = (IngredientType)Enum.Parse(
+                typeof(IngredientType),
                 currentDropDown.options[currentDropDown.value].text
             );
 
@@ -57,7 +57,7 @@ public sealed class ValidateRecipe : MonoBehaviour
         {
             RecipeSO @new = RecipeSO.CreateFromIngredientOccurenceMap(
                     ingredientOccurenceCount,
-                    (ItemType)Enum.Parse(typeof(ItemType), recipeOutputDropDown.options[recipeOutputDropDown.value].text),
+                    (IngredientType)Enum.Parse(typeof(IngredientType), recipeOutputDropDown.options[recipeOutputDropDown.value].text),
                     recipes
                 );
 

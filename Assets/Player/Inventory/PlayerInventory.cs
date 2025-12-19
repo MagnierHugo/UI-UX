@@ -11,12 +11,12 @@ public sealed class PlayerInventory : MonoBehaviour
     [SerializeField, HideInInspector] private Vector3[] renderPositions = new Vector3[2];
     public readonly Ingredient[] Hands = new Ingredient[2];
 
-    private Ingredient LeftHand
+    public Ingredient LeftHand
     {
         get => Hands[0];
         set => Hands[0] = value;
     }
-    private Ingredient RightHand
+    public Ingredient RightHand
     {
         get => Hands[1];
         set => Hands[1] = value;

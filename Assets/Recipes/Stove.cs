@@ -71,7 +71,7 @@ public sealed class Stove : MonoBehaviour, IInteractable
 
         for (int i = 0; i < placedItems.Length; i++)
         {
-            Item current = placedItems[i];
+            Ingredient current = placedItems[i];
             if (current != null)
                 if (playerInventory.LeftHand == current || playerInventory.RightHand == current)
                     placedItems[i] = null;
@@ -152,7 +152,6 @@ public sealed class Stove : MonoBehaviour, IInteractable
         public bool UpdateProgress(float progressValue)
         {
             Current += progressValue * Time.deltaTime;
-            print(Current);
 
             return Current >= Target;
         }

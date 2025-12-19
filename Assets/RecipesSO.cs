@@ -20,7 +20,7 @@ public sealed class RecipesSO : ScriptableObject
             if (Recipes[i] == null)
                 Recipes.RemoveAt(i);
     }
-    public Item GetRelevantItemFromItemType(ItemType itemType)
+    public Ingredient GetRelevantItemFromItemType(IngredientType itemType)
     {
         for (int i = 0; i < ItemToPrefabMap.Count; i++)
             if (ItemToPrefabMap[i].ItemType == itemType)
@@ -33,6 +33,6 @@ public sealed class RecipesSO : ScriptableObject
 [Serializable]
 public struct ItemToPrefabMap
 {
-    public ItemType ItemType;
-    public Item ItemPrefab;
+    public IngredientType ItemType;
+    public Ingredient ItemPrefab;
 }

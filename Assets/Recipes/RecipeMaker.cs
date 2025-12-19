@@ -83,7 +83,7 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
 
 
         bool success = false;
-        Item result = null;
+        Ingredient result = null;
         foreach (RecipeSO recipe in recipes.Recipes)
             if (success |= recipe.TryMake(placedItems.ToList(), out result))
                 break;
@@ -104,7 +104,7 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
 
         for (int i = 0; i < placedItems.Length; i++)
         {
-            Item current = placedItems[i];
+            Ingredient current = placedItems[i];
             if (current != null)
                 if (playerInventory.LeftHand == current || playerInventory.RightHand == current)
                     placedItems[i] = null;
