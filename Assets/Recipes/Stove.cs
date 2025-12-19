@@ -66,6 +66,18 @@ public sealed class Stove : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        if (playerInventory == null)
+            return;
+
+        for (int i = 0; i < placedItems.Length; i++)
+        {
+            Item current = placedItems[i];
+            if (current != null)
+                if (playerInventory.LeftHand == current || playerInventory.RightHand == current)
+                    placedItems[i] = null;
+
+        }
+
         for (int i = cookingProgresses.Count - 1; i >= 0 ; i--)
         {
             CookingProgress cookingProgress = cookingProgresses[i];
@@ -110,7 +122,7 @@ public sealed class Stove : MonoBehaviour, IInteractable
         bool wasPlaced = false;
         for (int i = 0; i < placedItemPositions.Length; i++)
         {
-            if (Physics.CheckSphere(placedItemPositions[i].position, .1f, Layers.Interactable, QueryTriggerInteraction.Ignore))
+            if (placedItems[i] != null)
                 continue;
 
             playerInventory.Hands[handIndex].transform.position = placedItemPositions[i].position + Vector3.up * (playerInventory.Hands[handIndex].BoxCollider.size.y / 2); // place it onto the stove
