@@ -58,17 +58,17 @@ public sealed class ValidateRecipe : MonoBehaviour
             RecipeSO @new = RecipeSO.CreateFromIngredientOccurenceMap(
                     ingredientOccurenceCount,
                     (IngredientType)Enum.Parse(typeof(IngredientType), recipeOutputDropDown.options[recipeOutputDropDown.value].text),
+                    recipeName.text,
                     recipes
                 );
 
+            recipes.Recipes.Add(@new);
             recipeBookPagesHandler.AddPage(@new);
 #if UNITY_EDITOR && false
             AssetDatabase.CreateAsset(@new, $"Assets/Recipes/{recipeName.text}.asset");
             AssetDatabase.SaveAssets();
             AssetDatabase.Refresh();
 #endif
-            recipes.Recipes.Add(@new);
-
         }
     }
 }

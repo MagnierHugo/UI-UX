@@ -28,6 +28,15 @@ public sealed class RecipesSO : ScriptableObject
 
         return null;
     }
+
+    public (RecipeSO recipe, int index) FindRecipeFromName(string name)
+    {
+        for (int i = 0; i < Recipes.Count;i++)
+            if (Recipes[i].RecipeName == name)
+                return (Recipes[i], i);
+
+        return (null, -1);
+    }
 }
 
 [Serializable]

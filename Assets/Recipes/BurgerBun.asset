@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8808192b65ed00746b4419553394c05d, type: 3}
   m_Name: BurgerBun
   m_EditorClassIdentifier: 
+  <RecipeName>k__BackingField: Burger Bun Reconstructed
   <Ingredients>k__BackingField: 0300000002000000
   <Output>k__BackingField: {fileID: -2800150894708709598, guid: ea6964b849f11e84a8a9caa6a66be8f5, type: 3}

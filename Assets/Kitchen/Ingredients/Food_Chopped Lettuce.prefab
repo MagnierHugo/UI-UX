@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Prefab>k__BackingField: {fileID: 8319602204778220860}
-  <IngredientType>k__BackingField: 0
+  <IngredientType>k__BackingField: 8
   pickupCanvasPrefab: {fileID: 1890965728568196285, guid: b2a6e8d9e0a13e14d83563d9bd0faf2a, type: 3}
   <PreviewOrientation>k__BackingField: {x: 0, y: 255, z: 0}
   <MeshHeight>k__BackingField: 0.13218822

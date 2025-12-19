@@ -6,9 +6,6 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
-using TMPro;
-
-using Unity.VisualScripting.FullSerializer;
 
 using UnityEngine;
 using UnityEngine.UI;
@@ -17,6 +14,7 @@ using UnityEngine.UI;
 [CreateAssetMenu(fileName = "Recipe", menuName = "Scriptable Objects/Recipe")]
 public sealed class RecipeSO : ScriptableObject
 {
+    [field: SerializeField] public string RecipeName { get; private set; }
     [field: SerializeField] public List<IngredientType> Ingredients { get; private set; }
     [field: SerializeField] public Ingredient Output { get; private set; }
 
@@ -41,7 +39,7 @@ public sealed class RecipeSO : ScriptableObject
     {
         result = null;
         List<Ingredient> consumedItems = new List<Ingredient>();
-        foreach (IngredientType ingredient in Ingredients)
+        foreach (IngredientType recipeIngredientType in Ingredients)
         {
             bool foundOne = false;
             for (int i = 0; i < inputIngredients.Count; i++)
@@ -49,7 +47,7 @@ public sealed class RecipeSO : ScriptableObject
                 if (inputIngredients[i] == null)
                     continue;
 
-                if (inputIngredients[i].IngredientType == ingredient)
+                if (inputIngredients[i].IngredientType == recipeIngredientType)
                 {
                     consumedItems.Add(inputIngredients[i]);
                     inputIngredients.Remove(inputIngredients[i]);
@@ -85,7 +83,7 @@ public sealed class RecipeSO : ScriptableObject
         return true;
     }
 
-    public static RecipeSO CreateFromIngredientOccurenceMap(Dictionary<IngredientType, int> ingredientOccurenceCount_, IngredientType recipeOutput, RecipesSO recipes)
+    public static RecipeSO CreateFromIngredientOccurenceMap(Dictionary<IngredientType, int> ingredientOccurenceCount_, IngredientType recipeOutput, string recipeName, RecipesSO recipes)
     {
         RecipeSO @new = CreateInstance<RecipeSO>();
         @new.ingredientOccurenceCount = ingredientOccurenceCount_;
@@ -95,6 +93,7 @@ public sealed class RecipeSO : ScriptableObject
                 @new.Ingredients.Add(keyValuePair.Key);
 
         @new.Output  = recipes.GetRelevantItemFromItemType(recipeOutput);
+        @new.RecipeName = recipeName;
         return @new;
     }
 

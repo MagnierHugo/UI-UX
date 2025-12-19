@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 0}
   m_Name: RecipeBurger
   m_EditorClassIdentifier: Assembly-CSharp::RecipeSO
+  <RecipeName>k__BackingField: Tasty Burger
   <Ingredients>k__BackingField: 0300000006000000080000000d0000000a00000002000000
   <Output>k__BackingField: {fileID: 5923910125644067870, guid: eaefebac67bca6a4db411a4c5d3fa5f3, type: 3}
