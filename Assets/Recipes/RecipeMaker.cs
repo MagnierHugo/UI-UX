@@ -68,7 +68,7 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
         bool wasPlaced = false;
         for (int i = 0; i < placedItemPositions.Length; i++)
         {
-            if (Physics.CheckSphere(placedItemPositions[i].position, .1f, Layers.Interactable, QueryTriggerInteraction.Ignore))
+            if (placedItems[i] != null)
                 continue;
 
             playerInventory.Hands[handIndex].transform.position = placedItemPositions[i].position + Vector3.up * (playerInventory.Hands[handIndex].BoxCollider.size.y / 2); // place it onto the table or stack it onto items already on it
@@ -81,15 +81,10 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
         if (!wasPlaced)
             throw new Exception("Not placed: no spot available");
 
-        List<Item> itemsAsList = placedItems.ToList();
-        foreach (Item item in itemsAsList)
-            if (item != null)
-                print(item.Itemtype);
-
         bool success = false;
         Item result = null;
-        foreach (var recipe in recipes.Recipes)
-            if (success |= recipe.TryMake(itemsAsList, out result))
+        foreach (RecipeSO recipe in recipes.Recipes)
+            if (success |= recipe.TryMake(placedItems.ToList(), out result))
                 break;
 
         if (success)
@@ -98,6 +93,19 @@ public sealed class RecipeMaker : MonoBehaviour, IInteractable
 
     private void Update()
     {
+        if (playerInventory == null)
+            return;
+
+        for (int i = 0; i < placedItems.Length; i++)
+        {
+            Item current = placedItems[i];
+            if (current != null)
+                if (playerInventory.LeftHand == current || playerInventory.RightHand == current)
+                    placedItems[i] = null;
+            
+        }
+
+
         if (!interactCanvas.activeSelf)
             return;
 
